@@ -1,13 +1,16 @@
 <?php
 // 事件定义文件
 return [
-    'bind'      => [
+    'bind' => [
     ],
 
-    'listen'    => [
-        'AppInit'  => [],
-        'HttpRun'  => [],
-        'HttpEnd'  => [],
+    'listen' => [
+        'AppInit' => [
+            \app\listener\InitConfig::class,
+            \app\listener\InitDict::class
+        ],
+        'HttpRun' => [],
+        'HttpEnd' => [],
         'LogLevel' => [],
         'LogWrite' => [],
     ],
