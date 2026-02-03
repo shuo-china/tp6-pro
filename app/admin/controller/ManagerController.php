@@ -84,10 +84,7 @@ class ManagerController extends BaseController
     public function bindWechat()
     {
         $param = $this->request->param();
-
-        $manager = Manager::find($param['id']);
         $oauth = \thirdconnect\Oauth::wechat();
-
         $info = $oauth->getUserinfo();
 
         Manager::where('id', $param['id'])->update([
