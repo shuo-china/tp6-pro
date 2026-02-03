@@ -5,11 +5,11 @@ return [
     ],
 
     'listen' => [
-        'AppInit' => [
+        'AppInit' => [],
+        'HttpRun' => [
             \app\listener\InitConfig::class,
             \app\listener\InitDict::class
         ],
-        'HttpRun' => [],
         'HttpEnd' => [],
         'LogLevel' => [],
         'LogWrite' => [],

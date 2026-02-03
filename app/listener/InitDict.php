@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace app\listener;
 
-use think\Exception;
 use think\facade\Config;
+use app\admin\model\DictType;
+use app\admin\model\DictItem;
 
 class InitDict
 {
@@ -12,21 +13,21 @@ class InitDict
      * 按照分组读取系统配置
      * @return array
      */
-    protected function getDictsByGroup()
+    protected function getDicts()
     {
         $result = [];
 
-        $dbDicts = \think\facade\Db::name('dict')->select()->toArray();
+        $types = DictType::where('status', 1)->select()->toArray();
 
-        foreach ($dbDicts as $v) {
-            $dictValues = [];
+        foreach ($types as $t) {
+            $data = [];
 
-            $list = \think\facade\Db::name('dict_value')->where('dict_id', $v['id'])->where('status', 1)->select()->toArray();
+            $list = DictItem::where('type_id', $t['id'])->where('status', 1)->select()->toArray();
             foreach ($list as $item) {
-                $dictValues[$item['dict_value']] = $item['dict_key'];
+                $data[$item['value']] = $item['name'];
             }
 
-            $result[$v['dict_type']] = $dictValues;
+            $result[$t['key']] = $data;
         }
 
         return $result;
@@ -40,7 +41,7 @@ class InitDict
         $dicts = cache('sys_dict');
 
         if (!$dicts) {
-            $dicts = $this->getDictsByGroup();
+            $dicts = $this->getDicts();
             cache('sys_dict', $dicts);
         }
 

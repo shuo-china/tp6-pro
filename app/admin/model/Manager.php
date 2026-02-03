@@ -6,7 +6,6 @@ use app\admin\model\File;
 use app\admin\model\ManagerRole;
 use think\model\concern\SoftDelete;
 
-
 class Manager extends BaseModel
 {
     use SoftDelete;
@@ -35,8 +34,8 @@ class Manager extends BaseModel
     {
         $this->save($data);
 
-        if (!empty($data['role_ids'])) {
-            $this->roles()->saveAll($data['role_ids']);
+        if (!empty($data['role_keys'])) {
+            $this->roles()->saveAll($data['role_keys']);
         }
     }
 

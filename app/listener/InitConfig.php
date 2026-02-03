@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace app\listener;
 
 use think\facade\Config;
+use app\admin\model\ConfigGroup;
+use app\admin\model\ConfigItem;
 
 class InitConfig
 {
@@ -11,21 +13,23 @@ class InitConfig
      * 按照分组读取系统配置
      * @return array
      */
-    protected function getConfigsByGroup()
+    protected function getConfigs()
     {
-        $dbConfigs = \think\facade\Db::name('config')->field('group,name,value,type')->select()->toArray();
         $result = [];
-        foreach ($dbConfigs as $v) {
-            switch ($v['type']) {
-                case 'array':
-                    $result[$v['name']] = parse_attr($v['value']);
-                    break;
-                default:
-                    $result[$v['name']] = $v['value'];
-                    break;
-            }
-        }
 
+        $groups = ConfigGroup::select()->toArray();
+
+        foreach ($groups as $g) {
+            $data = [];
+
+            $list = ConfigItem::where('group_id', $g['id'])->select();
+
+            foreach ($list as $item) {
+                $data[$item['key']] = $item['value'];
+            }
+
+            $result[$g['key']] = $data;
+        }
         return $result;
     }
 
@@ -37,7 +41,7 @@ class InitConfig
         $configs = cache('sys_config');
 
         if (!$configs) {
-            $configs = $this->getConfigsByGroup();
+            $configs = $this->getConfigs();
             cache('sys_config', $configs);
         }
 

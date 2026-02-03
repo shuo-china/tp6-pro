@@ -37,6 +37,10 @@ class AccessController extends BaseController
 
     public function createTokenByWechat()
     {
+        $param = $this->request->param();
+
+        $this->validate($param, 'Access.wechat');
+
         $oauth = \thirdconnect\Oauth::wechat();
         $info = $oauth->getUserinfo();
 

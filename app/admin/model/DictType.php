@@ -2,7 +2,6 @@
 
 namespace app\admin\model;
 
-class Role extends BaseModel
+class DictType extends BaseModel
 {
-
 }

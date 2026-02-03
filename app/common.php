@@ -1,26 +1,4 @@
 <?php
-if (!function_exists('parse_attr')) {
-    /**
-     * 解析配置
-     * @param string $value 配置值
-     * @return array|string
-     */
-    function parse_attr($value = '')
-    {
-        $array = preg_split('/[,;\r\n]+/', trim($value, ",;\r\n"));
-        if (strpos($value, ':')) {
-            $value = array();
-            foreach ($array as $val) {
-                list($k, $v) = explode(':', $val);
-                $value[$k] = $v;
-            }
-        } else {
-            $value = $array;
-        }
-        return $value;
-    }
-}
-
 if (!function_exists('get_full_path')) {
     /**
      * 格式化为全地址路径
@@ -35,6 +13,106 @@ if (!function_exists('get_full_path')) {
                 $domain . '/' . $path;
         }
         return $path;
+    }
+}
+
+if (!function_exists('get_file')) {
+    /**
+     * 批量获取附件路径
+     * @param array $key 附件key
+     * @param int $type 类型：1-补全域名，0-直接返回数据库记录的地址
+     * @return array | null
+     */
+    function get_file($key = '', $type = 0)
+    {
+        $file = new \app\admin\model\File();
+
+        $data = $file->where('key', $key)->field('id,key,path,name')->find();
+
+        if (!$data) {
+            return null;
+        }
+
+        if ($type === 1) {
+            $data['path'] = get_full_path($data['path']);
+        }
+
+        return $data;
+    }
+}
+
+if (!function_exists('get_files')) {
+    /**
+     * 批量获取附件路径
+     * @param array $keys 附件key
+     * @param int $type 类型：1-补全域名，0-直接返回数据库记录的地址
+     * @return array
+     */
+    function get_files($keys = '', $type = 0)
+    {
+        !is_array($keys) && $keys = explode(',', $keys);
+
+        $file = new \app\admin\model\File();
+        $list = $file->where('key', 'in', $keys)->field('id,key,path,name')->select()->toArray();
+
+        if ($type === 1) {
+            foreach ($list as &$v) {
+                $v['path'] = get_full_path($v['path']);
+            }
+        }
+
+        return $list;
+    }
+}
+
+if (!function_exists('parse_attr')) {
+    /**
+     * 解析配置
+     * @param string $value 配置值
+     * @return array|string
+     */
+    function parse_attr($value = '')
+    {
+        $array = preg_split('/[,;\r\n]+/', trim($value, ",;\r\n"));
+        if (strpos($value, ':')) {
+            $value = array();
+            foreach ($array as $val) {
+                list($k, $v) = explode(':', $val);
+                $value[] = [
+                    'label' => $k,
+                    'value' => $v,
+                ];
+            }
+        } else {
+            $value = $array;
+        }
+        return $value;
+    }
+}
+
+if (!function_exists('unparse_attr')) {
+    /**
+     * 反解析配置（保持换行）
+     * @param array $value
+     * @return string
+     */
+    function unparse_attr($value = [])
+    {
+        if (!is_array($value)) {
+            return '';
+        }
+
+        // label/value 结构
+        if (isset($value[0]) && is_array($value[0]) && isset($value[0]['label'], $value[0]['value'])) {
+            $lines = [];
+            foreach ($value as $item) {
+                $lines[] = $item['label'] . ':' . $item['value'];
+            }
+            return implode("\n", $lines);
+        }
+
+        // 普通数组
+        return implode("\n", $value);
     }
 }
 
@@ -76,5 +154,32 @@ if (!function_exists('thinkphp_version')) {
     function thinkphp_version()
     {
         return \think\facade\App::version();
+    }
+}
+
+if (!function_exists('dumps')) {
+    /**
+     * 浏览器友好的变量输出
+     * @param mixed $vars 要输出的变量
+     * @return void
+     */
+    function dumps(...$vars)
+    {
+        ob_start();
+        var_dump(...$vars);
+
+        $output = ob_get_clean();
+        $output = preg_replace('/\]\=\>\n(\s+)/m', '] => ', $output);
+
+        if (PHP_SAPI == 'cli') {
+            $output = PHP_EOL . $output . PHP_EOL;
+        } else {
+            if (!extension_loaded('xdebug')) {
+                $output = htmlspecialchars($output, ENT_SUBSTITUTE);
+            }
+            $output = '<pre>' . $output . '</pre>';
+        }
+
+        echo $output;
     }
 }

@@ -2,8 +2,6 @@
 
 namespace app\admin\model;
 
-use app\system\model\AnnexThumbModel;
-
 class File extends BaseModel
 {
     public function getSizeAttr($value)
@@ -12,58 +10,24 @@ class File extends BaseModel
     }
 
     /**
-     * 根据附件ID获取路径
-     * @param int $id 附件ID
-     * @param int $type 类型：1-补全域名，0-直接返回数据库记录的地址
-     */
-    public function getFilePath($ids = 0, $type = 0)
-    {
-
-        if (is_array($ids)) {
-            $list = $this->where('id', 'in', $ids)->select()->toArray();
-
-            $paths = [];
-            foreach ($list as $v) {
-                if ($type == 0) {
-                    $paths[$v['id']] = $v['path'];
-                } else {
-                    $paths[$v['id']] = get_full_path($v['path']);
-                }
-            }
-
-            return $paths;
-        } else {
-            $data = $this->where('id', $ids)->find();
-
-            if ($data) {
-                if ($type == 0) {
-                    return $data['path'];
-                } else {
-                    return get_full_path($data['path']);
-                }
-            } else {
-                return null;
-            }
-        }
-    }
-
-    /**
-     * 根据附件ID获取名称
-     * @param int $id 附件ID
+     * 根据附件Key获取名称
+     * @param string $key 附件Key
      * @return string 名称
      */
-    public function getFileName($id = 0)
+    public function getFileName($key)
     {
-        return $this->where('id', $id)->value('name');
+        return $this->where('key', $key)->value('name');
     }
 
     /**
-     * 根据id删除附件
-     * @param string|array $ids 附件id
+     * 根据key删除附件
+     * @param string|array $keys 附件key
      */
-    public function deleteFile($ids = '')
+    public function deleteFile($keys = '')
     {
-        $result = self::destroy($ids);
+        $result = self::destroy(function ($query) use ($keys) {
+            $query->where('key', 'in', $keys);
+        });
         if ($result) {
             return true;
         } else {
