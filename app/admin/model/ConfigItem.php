@@ -29,11 +29,11 @@ class ConfigItem extends BaseModel
 
             case 'image':
             case 'file':
-                return get_file($value, 1);
+                return get_file($value);
 
             case 'images':
             case 'files':
-                return get_files($value, 1);
+                return get_files($value);
 
             default:
                 return $value;

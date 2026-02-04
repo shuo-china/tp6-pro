@@ -28,7 +28,7 @@ if (!function_exists('get_file')) {
 
         $data = $file->where('key', $key)->field('id,key,path,name')->find();
 
-        return $data ?? null;
+        return $data;
     }
 }
 
