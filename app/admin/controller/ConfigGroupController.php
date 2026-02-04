@@ -9,9 +9,20 @@ class ConfigGroupController extends BaseController
 {
     protected $middleware = [
         'api_auth' => [
-            'except' => ['init']
+            'except' => ['initNoAuth']
         ]
     ];
+
+    public function initNoAuth()
+    {
+        $data = Config::get('sys');
+        $this->success(200, [
+            'base' => $data['base'],
+            'wechat' => [
+                'appid' => $data['wechat']['appid'],
+            ]
+        ]);
+    }
 
     public function init()
     {
