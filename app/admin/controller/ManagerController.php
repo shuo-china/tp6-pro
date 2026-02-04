@@ -42,7 +42,8 @@ class ManagerController extends BaseController
     {
         $id = $this->request->param('id');
         $manager = Manager::with([
-            'roles'
+            'roles',
+            'avatar'
         ])->hidden(['password'])->where('id', $id)->find();
 
         $this->success(200, $manager);

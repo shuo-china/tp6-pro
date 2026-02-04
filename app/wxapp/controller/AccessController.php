@@ -41,8 +41,8 @@ class AccessController extends BaseController
     protected function getWechatMiniMobile($code)
     {
         $params = [
-            'appid' => config('sys.wechat_mini_appid'),
-            'secret' => config('sys.wechat_mini_appsecret'),
+            'appid' => config('sys.wechat_mini.appid'),
+            'secret' => config('sys.wechat_mini.appsecret'),
             'grant_type' => 'client_credential',
             'force_refresh' => false,
         ];

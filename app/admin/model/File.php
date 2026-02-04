@@ -9,6 +9,11 @@ class File extends BaseModel
         return file_size_format($value);
     }
 
+    public function getPathAttr($value)
+    {
+        return get_full_path($value);
+    }
+
     /**
      * 根据附件Key获取名称
      * @param string $key 附件Key

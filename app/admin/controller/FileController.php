@@ -16,21 +16,21 @@ class FileController extends BaseController
         $fileIns = new File($uploadedFile);
 
         $rules = [
-            'maxSize' => config('sys.upload_image_size') * 1024,
-            'allowExt' => $fileIns->isImage() ? explode(',', config('sys.upload_image_ext')) : explode(',', config('sys.upload_file_ext'))
+            'maxSize' => $fileIns->isImage() ? config('sys.upload.image_size') * 1024 : config('sys.upload.file_size') * 1024,
+            'allowExt' => $fileIns->isImage() ? config('sys.upload.image_ext') : config('sys.upload.file_ext')
         ];
 
-        // if (!$fileIns->check($rules)) {
-        //     $this->error(403, $fileIns->errorMessage, 'FILE_LIMIT');
-        // }
+        if (!$fileIns->check($rules)) {
+            $this->error(403, $fileIns->errorMessage, 'FILE_LIMIT');
+        }
 
         $fileInfo = $fileIns->save();
 
-        if ($fileInfo['is_image'] == true && config('sys.is_thumb') == 1) {
-            $thumbWidth = config('sys.thumb_width') ?? 0;
-            $thumbHeight = config('sys.thumb_height') ?? 0;
-            $thumbQuality = config('sys.thumb_quality') ?? 75;
-            $thumbExt = config('sys.thumb_ext') ?? 'jpg';
+        if ($fileInfo['is_image'] == true && config('sys.upload.is_thumb') == 1) {
+            $thumbWidth = config('sys.upload.thumb_width') ?? 0;
+            $thumbHeight = config('sys.upload.thumb_height') ?? 0;
+            $thumbQuality = config('sys.upload.thumb_quality') ?? 75;
+            $thumbExt = config('sys.upload.thumb_ext') ?? 'jpg';
             $fileInfo['path'] = $this->createThumb($fileInfo['path'], $thumbWidth, $thumbHeight, $thumbQuality, $thumbExt);
             $fileInfo['extension'] = $thumbExt;
         }

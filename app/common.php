@@ -20,24 +20,15 @@ if (!function_exists('get_file')) {
     /**
      * 批量获取附件路径
      * @param array $key 附件key
-     * @param int $type 类型：1-补全域名，0-直接返回数据库记录的地址
      * @return array | null
      */
-    function get_file($key = '', $type = 0)
+    function get_file($key = '')
     {
         $file = new \app\admin\model\File();
 
         $data = $file->where('key', $key)->field('id,key,path,name')->find();
 
-        if (!$data) {
-            return null;
-        }
-
-        if ($type === 1) {
-            $data['path'] = get_full_path($data['path']);
-        }
-
-        return $data;
+        return $data ?? null;
     }
 }
 
@@ -45,22 +36,14 @@ if (!function_exists('get_files')) {
     /**
      * 批量获取附件路径
      * @param array $keys 附件key
-     * @param int $type 类型：1-补全域名，0-直接返回数据库记录的地址
      * @return array
      */
-    function get_files($keys = '', $type = 0)
+    function get_files($keys = '')
     {
         !is_array($keys) && $keys = explode(',', $keys);
 
         $file = new \app\admin\model\File();
         $list = $file->where('key', 'in', $keys)->field('id,key,path,name')->select()->toArray();
-
-        if ($type === 1) {
-            foreach ($list as &$v) {
-                $v['path'] = get_full_path($v['path']);
-            }
-        }
-
         return $list;
     }
 }

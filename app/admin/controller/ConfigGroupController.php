@@ -50,6 +50,7 @@ class ConfigGroupController extends BaseController
     public function create()
     {
         $post = $this->request->post();
+        $this->validate($post, 'ConfigGroup');
         ConfigGroup::create($post);
         cache('sys_config', null);
         $this->success(201);
@@ -58,6 +59,7 @@ class ConfigGroupController extends BaseController
     public function update()
     {
         $post = $this->request->post();
+        $this->validate($post, 'ConfigGroup');
         ConfigGroup::update($post);
         cache('sys_config', null);
         $this->success(201);

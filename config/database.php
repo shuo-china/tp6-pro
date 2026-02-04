@@ -56,6 +56,8 @@ return [
             'trigger_sql' => env('app_debug', true),
             // 开启字段缓存
             'fields_cache' => false,
+            // 自定义查询对象
+            'query' => app\common\Query::class,
         ],
 
         // 更多的数据库配置信息

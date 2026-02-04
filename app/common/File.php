@@ -183,7 +183,7 @@ class File
                 $message = '文件不能超过' . file_size_format($this->maxSize);
                 break;
             case 2:
-                $message = '文件后缀名不支持, 当前支持：' . implode(',', $this->allowExt);
+                $message = '文件后缀名不支持, 当前支持：' . implode('，', $this->allowExt);
                 break;
             case 3:
                 $message = '文件mime类型不支持';

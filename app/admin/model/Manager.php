@@ -27,7 +27,7 @@ class Manager extends BaseModel
 
     public function avatar()
     {
-        return $this->hasOne(File::class, 'id', 'avatar_id');
+        return $this->hasOne(File::class, 'key', 'avatar_key');
     }
 
     public function createManager($data)
