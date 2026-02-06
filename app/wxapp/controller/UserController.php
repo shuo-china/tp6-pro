@@ -26,15 +26,13 @@ class UserController extends BaseController
         $this->success(201);
     }
 
-    public function isMobileBound()
+    public function unBindMobile()
     {
-        $user = User::where('id', $this->request->clientId)->find();
+        User::where('id', $this->request->clientId)->update([
+            'mobile' => null
+        ]);
 
-        $result = [
-            'is_mobile_bound' => $user->mobile ? true : false,
-        ];
-
-        $this->success(200, $result);
+        $this->success(201);
     }
 
     /**

@@ -32,6 +32,10 @@ class AccessController extends BaseController
 
         $this->app->event->trigger('UserLoginAfter', $user);
 
-        $this->success(201, $accessToken);
+        $result = array_merge([
+            'is_mobile_bound' => $user->mobile ? true : false,
+        ], $accessToken);
+
+        $this->success(201, $result);
     }
 }
