@@ -27,7 +27,14 @@ class ConfigGroupController extends BaseController
     public function init()
     {
         $data = Config::get('sys');
-        $this->success(200, $data);
+        $this->success(200, [
+            'base' => $data['base'],
+            'upload' => $data['upload'],
+            'pagination' => $data['pagination'],
+            'wechat' => [
+                'appid' => $data['wechat']['appid'],
+            ]
+        ]);
     }
 
     /**

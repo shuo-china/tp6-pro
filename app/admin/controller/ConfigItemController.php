@@ -3,8 +3,6 @@ namespace app\admin\controller;
 
 use app\admin\model\ConfigItem;
 
-use think\facade\Config;
-
 class ConfigItemController extends BaseController
 {
     /**

@@ -17,12 +17,12 @@ class InitDict
     {
         $result = [];
 
-        $types = DictType::where('status', 1)->select()->toArray();
+        $types = DictType::select()->toArray();
 
         foreach ($types as $t) {
             $data = [];
 
-            $list = DictItem::where('type_id', $t['id'])->where('status', 1)->select()->toArray();
+            $list = DictItem::where('type_id', $t['id'])->select()->toArray();
             foreach ($list as $item) {
                 $data[$item['value']] = $item['name'];
             }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2026-02-04 14:46:31
+Date: 2026-02-05 16:57:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4394,8 +4394,8 @@ INSERT INTO `kr_config_item` VALUES ('10019', '10003', 'number', '缩放质量',
 INSERT INTO `kr_config_item` VALUES ('10020', '10003', 'select', '缩放后缀', 'thumb_ext', 'jpg', '缩放后图像的扩展名', 'jpg:jpg\npng:png', '1770174224', '1770174227');
 INSERT INTO `kr_config_item` VALUES ('10021', '10004', 'text', 'AppID', 'appid', 'wxdc1fde650ff92103', '', '', '1770174272', '1770185345');
 INSERT INTO `kr_config_item` VALUES ('10022', '10004', 'text', 'AppSecret', 'appsecret', '6cd36a513d03353fdea11dd7485a15ba', '', '', '1770174328', '1770185501');
-INSERT INTO `kr_config_item` VALUES ('10023', '10005', 'text', 'AppID', 'appid', null, '', '', '1770174531', '1770174531');
-INSERT INTO `kr_config_item` VALUES ('10024', '10005', 'text', 'AppSecret', 'appsecret', null, '', '', '1770174620', '1770174624');
+INSERT INTO `kr_config_item` VALUES ('10023', '10005', 'text', 'AppID', 'appid', 'wx2020e8020c2f8386', '', '', '1770174531', '1770189364');
+INSERT INTO `kr_config_item` VALUES ('10024', '10005', 'text', 'AppSecret', 'appsecret', 'c1928b61bd64dd0e9f2fbb6f8e2f2ce1', '', '', '1770174620', '1770189366');
 
 -- ----------------------------
 -- Table structure for kr_dict_item
@@ -4410,11 +4410,13 @@ CREATE TABLE `kr_dict_item` (
   `create_time` int(11) unsigned NOT NULL COMMENT '创建时间',
   `update_time` int(11) unsigned NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10003 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of kr_dict_item
 -- ----------------------------
+INSERT INTO `kr_dict_item` VALUES ('10001', '10001', '标题', 'title', '1', '1770196971', '1770197234');
+INSERT INTO `kr_dict_item` VALUES ('10002', '10001', '简介', 'desc', '1', '1770196982', '1770197242');
 
 -- ----------------------------
 -- Table structure for kr_dict_type
@@ -4428,11 +4430,12 @@ CREATE TABLE `kr_dict_type` (
   `create_time` int(11) unsigned NOT NULL COMMENT '创建时间',
   `update_time` int(11) unsigned NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10002 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of kr_dict_type
 -- ----------------------------
+INSERT INTO `kr_dict_type` VALUES ('10001', '测试', 'test', '1', '1770196952', '1770196952');
 
 -- ----------------------------
 -- Table structure for kr_exception
@@ -4452,41 +4455,11 @@ CREATE TABLE `kr_exception` (
   `update_time` int(11) NOT NULL COMMENT '修改时间',
   `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=100031 DEFAULT CHARSET=utf8 COMMENT='异常表';
+) ENGINE=MyISAM AUTO_INCREMENT=100059 DEFAULT CHARSET=utf8 COMMENT='异常表';
 
 -- ----------------------------
 -- Records of kr_exception
 -- ----------------------------
-INSERT INTO `kr_exception` VALUES ('100001', 'D:\\Back End\\tp6-bdf-latest\\app\\admin\\controller\\RoleController.php', '17', '8192', 'Non-static method app\\common\\BaseModel::paginate() should not be called statically', '127.0.0.1', '/admin/role/pagination?page=1&list_rows=15', 'GET', '1770171714', '1770171714', '1770171714', null);
-INSERT INTO `kr_exception` VALUES ('100002', 'D:\\Back End\\tp6-bdf-latest\\app\\admin\\controller\\ConfigGroupController.php', '39', '8192', 'Non-static method app\\common\\BaseModel::paginate() should not be called statically', '127.0.0.1', '/admin/config_group/pagination?page=1&list_rows=15', 'GET', '1770171714', '1770171714', '1770171714', null);
-INSERT INTO `kr_exception` VALUES ('100003', 'D:\\Back End\\tp6-bdf-latest\\app\\listener\\InitConfig.php', '47', '2', 'Use of undefined constant configs - assumed \'configs\' (this will throw an Error in a future version of PHP)', '127.0.0.1', '/admin/role/pagination?page=1&list_rows=15', 'GET', '1770173348', '1770173348', '1770173348', null);
-INSERT INTO `kr_exception` VALUES ('100004', 'D:\\Back End\\tp6-bdf-latest\\app\\listener\\InitConfig.php', '47', '2', 'Use of undefined constant configs - assumed \'configs\' (this will throw an Error in a future version of PHP)', '127.0.0.1', '/admin/manager/currentManager', 'GET', '1770173370', '1770173370', '1770173370', null);
-INSERT INTO `kr_exception` VALUES ('100005', 'D:\\Back End\\tp6-bdf-latest\\app\\admin\\controller\\FileController.php', '20', '2', 'explode() expects parameter 2 to be string, array given', '127.0.0.1', '/admin/file/upload', 'POST', '1770175011', '1770175012', '1770175012', null);
-INSERT INTO `kr_exception` VALUES ('100006', 'D:\\Back End\\tp6-bdf-latest\\app\\admin\\controller\\FileController.php', '20', '2', 'explode() expects parameter 2 to be string, array given', '127.0.0.1', '/admin/file/upload', 'POST', '1770175018', '1770175018', '1770175018', null);
-INSERT INTO `kr_exception` VALUES ('100007', 'D:\\Back End\\tp6-bdf-latest\\app\\admin\\controller\\FileController.php', '20', '2', 'explode() expects parameter 2 to be string, array given', '127.0.0.1', '/admin/file/upload', 'POST', '1770175090', '1770175090', '1770175090', null);
-INSERT INTO `kr_exception` VALUES ('100008', 'D:\\Back End\\tp6-bdf-latest\\app\\admin\\controller\\FileController.php', '20', '2', 'explode() expects parameter 2 to be string, array given', '127.0.0.1', '/admin/file/upload', 'POST', '1770175174', '1770175174', '1770175174', null);
-INSERT INTO `kr_exception` VALUES ('100009', 'D:\\Back End\\tp6-bdf-latest\\vendor\\topthink\\think-trace\\src\\Html.php', '63', '8', '未定义数组索引: argv', '127.0.0.1', '/?s=error/400.html', 'GET', '1770177788', '1770177788', '1770177788', null);
-INSERT INTO `kr_exception` VALUES ('100010', 'D:\\Back End\\tp6-bdf-latest\\vendor\\topthink\\think-trace\\src\\Html.php', '63', '8', '未定义数组索引: argv', '127.0.0.1', '/?s=error/400.html', 'GET', '1770177845', '1770177845', '1770177845', null);
-INSERT INTO `kr_exception` VALUES ('100011', 'D:\\Back End\\tp6-bdf-latest\\vendor\\topthink\\think-trace\\src\\Html.php', '63', '8', '未定义数组索引: argv', '127.0.0.1', '/?s=error/400.html', 'GET', '1770177845', '1770177845', '1770177845', null);
-INSERT INTO `kr_exception` VALUES ('100012', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '121', '0', '41008：missing code, rid: 6982e3c3-494ba2ce-2a607876', '::1', '/admin/access/createTokenByWechat', 'POST', '1770185669', '1770185669', '1770185669', null);
-INSERT INTO `kr_exception` VALUES ('100013', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '121', '0', '40163：code been used, rid: 6982e3f9-65e4f5e3-52aeec2a', '127.0.0.1', '/admin/access/createTokenByWechat', 'POST', '1770185723', '1770185723', '1770185723', null);
-INSERT INTO `kr_exception` VALUES ('100014', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '121', '0', '41008：missing code, rid: 6982e45a-64c50048-3ff3aacf', '::1', '/admin/access/createTokenByWechat', 'POST', '1770185820', '1770185820', '1770185820', null);
-INSERT INTO `kr_exception` VALUES ('100015', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '121', '0', '40029：invalid code, rid: 6982e46f-162b6999-554b2e13', '127.0.0.1', '/admin/access/createTokenByWechat', 'POST', '1770185840', '1770185840', '1770185840', null);
-INSERT INTO `kr_exception` VALUES ('100016', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '121', '0', '40029：invalid code, rid: 6982e474-5189725c-27e37108', '127.0.0.1', '/admin/access/createTokenByWechat', 'POST', '1770185845', '1770185845', '1770185845', null);
-INSERT INTO `kr_exception` VALUES ('100017', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '121', '0', '40029：invalid code, rid: 6982e476-66105e98-08e1bbf7', '127.0.0.1', '/admin/access/createTokenByWechat', 'POST', '1770185847', '1770185847', '1770185847', null);
-INSERT INTO `kr_exception` VALUES ('100018', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '121', '0', '40029：invalid code, rid: 6982e477-3382c334-33895642', '127.0.0.1', '/admin/access/createTokenByWechat', 'POST', '1770185849', '1770185849', '1770185849', null);
-INSERT INTO `kr_exception` VALUES ('100019', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '121', '0', '41008：missing code, rid: 6982e513-556e7e54-4c788e7b', '::1', '/admin/access/createTokenByWechat', 'POST', '1770186004', '1770186005', '1770186005', null);
-INSERT INTO `kr_exception` VALUES ('100020', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '121', '0', '40163：code been used, rid: 6982e544-4fe97d8e-2534cfeb', '::1', '/admin/access/createTokenByWechat', 'POST', '1770186053', '1770186053', '1770186053', null);
-INSERT INTO `kr_exception` VALUES ('100021', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '121', '0', '40163：code been used, rid: 6982e565-3770baae-4b8f346d', '127.0.0.1', '/admin/access/createTokenByWechat', 'POST', '1770186086', '1770186086', '1770186086', null);
-INSERT INTO `kr_exception` VALUES ('100022', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '124', '0', '41008：missing code, rid: 6982e5b3-1c1b093c-00ca7b69', '::1', '/admin/access/createTokenByWechat', 'POST', '1770186165', '1770186165', '1770186165', null);
-INSERT INTO `kr_exception` VALUES ('100023', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '124', '0', '41008：missing code, rid: 6982e5bf-13d31ad9-352fb85f', '::1', '/admin/access/createTokenByWechat', 'POST', '1770186176', '1770186176', '1770186176', null);
-INSERT INTO `kr_exception` VALUES ('100024', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '122', '0', '41008：missing code, rid: 6982e5fb-21e76838-748d9816', '::1', '/admin/access/createTokenByWechat', 'POST', '1770186236', '1770186236', '1770186236', null);
-INSERT INTO `kr_exception` VALUES ('100025', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '122', '0', '41008：missing code, rid: 6982e665-08f78010-7687fa5f', '127.0.0.1', '/admin/access/createTokenByWechat', 'POST', '1770186342', '1770186343', '1770186343', null);
-INSERT INTO `kr_exception` VALUES ('100026', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '122', '0', '41008：missing code, rid: 6982e66c-464baf00-0d8d2ccb', '127.0.0.1', '/admin/access/createTokenByWechat', 'POST', '1770186349', '1770186349', '1770186349', null);
-INSERT INTO `kr_exception` VALUES ('100027', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '122', '0', '40029：invalid code, rid: 6982e8fc-30bb645e-6b28d247', '::1', '/admin/access/createTokenByWechat', 'POST', '1770187005', '1770187006', '1770187006', null);
-INSERT INTO `kr_exception` VALUES ('100028', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '122', '0', '40029：invalid code, rid: 6982e936-7c63837e-525fb910', '::1', '/admin/access/createTokenByWechat', 'POST', '1770187063', '1770187064', '1770187064', null);
-INSERT INTO `kr_exception` VALUES ('100029', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '122', '0', '40163：code been used, rid: 6982e98f-309f29a1-65ed56ef', '::1', '/admin/access/createTokenByWechat', 'POST', '1770187152', '1770187153', '1770187153', null);
-INSERT INTO `kr_exception` VALUES ('100030', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\Wechat.php', '122', '0', '41008：missing code, rid: 6982e9f1-4016615c-65b45ca2', '::1', '/admin/manager/bindWechat', 'POST', '1770187251', '1770187251', '1770187251', null);
 
 -- ----------------------------
 -- Table structure for kr_file
@@ -4545,7 +4518,7 @@ CREATE TABLE `kr_manager` (
 -- ----------------------------
 -- Records of kr_manager
 -- ----------------------------
-INSERT INTO `kr_manager` VALUES ('100001', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '硕硕', '', '6982e201848d9', '1', 'oftII6d4qesedHYqQiVtmpyuNVf4', 'ozVaf5-Q8V60ggn4Pa6X9vVS2LeI', '1', '::1', '1770187433', '1769506538', '1770187433', null);
+INSERT INTO `kr_manager` VALUES ('100001', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '硕硕', '', '6982e201848d9', '1', 'oftII6d4qesedHYqQiVtmpyuNVf4', 'ozVaf5-Q8V60ggn4Pa6X9vVS2LeI', '1', '127.0.0.1', '1770197012', '1769506538', '1770197012', null);
 
 -- ----------------------------
 -- Table structure for kr_manager_role
@@ -4597,10 +4570,12 @@ CREATE TABLE `kr_user` (
   `last_login_time` int(10) DEFAULT NULL COMMENT '最后登录时间',
   `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '注册时间',
   `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '修改时间',
+  `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mobile` (`mobile`)
-) ENGINE=MyISAM AUTO_INCREMENT=100001 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=100004 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of kr_user
 -- ----------------------------
+INSERT INTO `kr_user` VALUES ('100003', null, '', '', '1', '1', '', 'oTXlW7ACdNN8DEnfG5Ckogofkv2s', '127.0.0.1', '1770280207', '1770277390', '1770280207', null);
