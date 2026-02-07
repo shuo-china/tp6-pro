@@ -1,15 +1,12 @@
 <?php
+namespace app\portal\controller;
 
-namespace app\wxapp\controller;
-
-use app\wxapp\WxappSend;
+use app\portal\PortalSend;
 use app\common\BaseController as CommonBaseController;
 
 class BaseController extends CommonBaseController
 {
-    use WxappSend;
-
-    protected $middleware = ['wxapp_api_auth:guest'];
+    use PortalSend;
 
     protected function initialize()
     {

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2026-02-05 16:57:55
+Date: 2026-02-07 11:48:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4340,7 +4340,7 @@ CREATE TABLE `kr_config_group` (
   `create_time` int(11) unsigned NOT NULL COMMENT '创建时间',
   `update_time` int(11) unsigned NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10006 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10007 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of kr_config_group
@@ -4350,6 +4350,7 @@ INSERT INTO `kr_config_group` VALUES ('10002', '分页', 'pagination', '17701695
 INSERT INTO `kr_config_group` VALUES ('10003', '上传', 'upload', '1770173009', '1770173009');
 INSERT INTO `kr_config_group` VALUES ('10004', '微信', 'wechat', '1770174248', '1770174248');
 INSERT INTO `kr_config_group` VALUES ('10005', '微信小程序', 'wechat_mini', '1770174258', '1770174258');
+INSERT INTO `kr_config_group` VALUES ('10006', '微信支付', 'wechat_pay', '1770348735', '1770348735');
 
 -- ----------------------------
 -- Table structure for kr_config_item
@@ -4367,15 +4368,15 @@ CREATE TABLE `kr_config_item` (
   `create_time` int(11) unsigned NOT NULL COMMENT '创建时间',
   `update_time` int(11) unsigned NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10025 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10034 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of kr_config_item
 -- ----------------------------
-INSERT INTO `kr_config_item` VALUES ('10001', '10001', 'text', '站点标题', 'web_site_title', 'Element Pro', '', '', '1770168912', '1770168928');
+INSERT INTO `kr_config_item` VALUES ('10001', '10001', 'text', '站点标题', 'web_site_title', '徐州久久冷鲜', '', '', '1770168912', '1770362133');
 INSERT INTO `kr_config_item` VALUES ('10002', '10001', 'text', '站点描述', 'web_site_description', '中后台前端设计解决方案', '', '', '1770168959', '1770169052');
 INSERT INTO `kr_config_item` VALUES ('10003', '10001', 'image', '站点Logo', 'web_site_logo', '6982e1d1346fd', '', '', '1770169086', '1770185169');
-INSERT INTO `kr_config_item` VALUES ('10004', '10001', 'select', '导航模式', 'web_site_layout', 'mix', '', '顶部菜单布局:top\n侧边菜单布局:side\n混合菜单布局:mix', '1770169411', '1770177575');
+INSERT INTO `kr_config_item` VALUES ('10004', '10001', 'select', '导航模式', 'web_site_layout', 'side', '', '顶部菜单布局:top\n侧边菜单布局:side\n混合菜单布局:mix', '1770169411', '1770291247');
 INSERT INTO `kr_config_item` VALUES ('10005', '10001', 'text', '版权信息', 'web_site_copyright', 'Copyright © 2026 Kirin Team', '', '', '1770169439', '1770169445');
 INSERT INTO `kr_config_item` VALUES ('10006', '10001', 'checkbox', '登录方式', 'web_site_login_type', 'wechat,password', '', '账号密码登录:password\n微信扫码登录:wechat', '1770169481', '1770169483');
 INSERT INTO `kr_config_item` VALUES ('10007', '10002', 'number', '每页条数', 'default_page_size', '15', '', '', '1770169637', '1770172984');
@@ -4383,7 +4384,7 @@ INSERT INTO `kr_config_item` VALUES ('10008', '10002', 'text', '当前页字段'
 INSERT INTO `kr_config_item` VALUES ('10009', '10002', 'text', '每页数量字段', 'request_page_size_key', 'list_rows', '', '', '1770170016', '1770170020');
 INSERT INTO `kr_config_item` VALUES ('10010', '10002', 'text', '总条数字段', 'response_total_key', 'total', '', '', '1770170031', '1770170047');
 INSERT INTO `kr_config_item` VALUES ('10011', '10002', 'text', '列表数据字段', 'response_data_key', 'data', '', '', '1770170043', '1770170049');
-INSERT INTO `kr_config_item` VALUES ('10012', '10003', 'tags', '文件后缀', 'file_ext', 'doc,docx,xls,xlsx,rar,zip', '允许上传的文件后缀，不填则不限制类型', '', '1770173899', '1770173949');
+INSERT INTO `kr_config_item` VALUES ('10012', '10003', 'tags', '文件后缀', 'file_ext', 'doc,docx,xls,xlsx,rar,zip,pem', '允许上传的文件后缀，不填则不限制类型', '', '1770173899', '1770348913');
 INSERT INTO `kr_config_item` VALUES ('10013', '10003', 'number', '文件大小', 'file_size', null, '图片上传大小限制，0为不限制大小，单位：KB', '', '1770174015', '1770174015');
 INSERT INTO `kr_config_item` VALUES ('10014', '10003', 'tags', '图片后缀', 'image_ext', 'jpg,jpeg,png,gif', '允许上传的图片后缀，不填则不限制类型', '', '1770174037', '1770174048');
 INSERT INTO `kr_config_item` VALUES ('10015', '10003', 'number', '图片大小', 'image_size', null, '图片上传大小限制，0为不限制大小，单位：KB', '', '1770174069', '1770174069');
@@ -4394,8 +4395,17 @@ INSERT INTO `kr_config_item` VALUES ('10019', '10003', 'number', '缩放质量',
 INSERT INTO `kr_config_item` VALUES ('10020', '10003', 'select', '缩放后缀', 'thumb_ext', 'jpg', '缩放后图像的扩展名', 'jpg:jpg\npng:png', '1770174224', '1770174227');
 INSERT INTO `kr_config_item` VALUES ('10021', '10004', 'text', 'AppID', 'appid', 'wxdc1fde650ff92103', '', '', '1770174272', '1770185345');
 INSERT INTO `kr_config_item` VALUES ('10022', '10004', 'text', 'AppSecret', 'appsecret', '6cd36a513d03353fdea11dd7485a15ba', '', '', '1770174328', '1770185501');
-INSERT INTO `kr_config_item` VALUES ('10023', '10005', 'text', 'AppID', 'appid', 'wx2020e8020c2f8386', '', '', '1770174531', '1770189364');
-INSERT INTO `kr_config_item` VALUES ('10024', '10005', 'text', 'AppSecret', 'appsecret', 'c1928b61bd64dd0e9f2fbb6f8e2f2ce1', '', '', '1770174620', '1770189366');
+INSERT INTO `kr_config_item` VALUES ('10023', '10005', 'text', 'AppID', 'appid', 'wx31ccfafb7c027857', '', '', '1770174531', '1770360423');
+INSERT INTO `kr_config_item` VALUES ('10024', '10005', 'text', 'AppSecret', 'appsecret', '4ae2e97087280f4ed7b0f7980f03a099', '', '', '1770174620', '1770360420');
+INSERT INTO `kr_config_item` VALUES ('10025', '10006', 'text', '微信支付商户号', 'merchant_id', '1668224130', '', '', '1770348754', '1770359103');
+INSERT INTO `kr_config_item` VALUES ('10026', '10006', 'text', '证书序列号', 'merchant_cert_serial', '58BCFF605D708A88D166EC4A83C8A245E3C1F07D', '「API安全」->「商户API证书」->「管理证书」', '', '1770348765', '1770361529');
+INSERT INTO `kr_config_item` VALUES ('10027', '10006', 'file', '商户API私钥', 'merchant_private_key', '698587cbb99be', '「API安全」->「商户API证书」->「管理证书」', '', '1770358702', '1770358731');
+INSERT INTO `kr_config_item` VALUES ('10028', '10006', 'text', '微信支付公钥ID', 'platform_public_key_id', '', '', '', '1770358805', '1770363722');
+INSERT INTO `kr_config_item` VALUES ('10029', '10006', 'file', '微信支付公钥', 'platform_public_key', '', '', '', '1770358907', '1770363722');
+INSERT INTO `kr_config_item` VALUES ('10030', '10006', 'text', '平台证书序列号', 'platform_cert_serial', '7686C222E8BDADDAE4090D2E989594182B9FAD48', '', '', '1770359004', '1770360935');
+INSERT INTO `kr_config_item` VALUES ('10031', '10006', 'file', '平台证书', 'platform_cert', '698589dad34ea', '', '', '1770359215', '1770359258');
+INSERT INTO `kr_config_item` VALUES ('10032', '10006', 'textarea', '回调地址', 'notify_url', 'http://1979f815.r15.cpolar.top/portal/callback/wechatNotify', '', '', '1770360019', '1770365313');
+INSERT INTO `kr_config_item` VALUES ('10033', '10006', 'text', 'APIv3密钥', 'api_v3_key', 'P1wNTaBa8WQ36RNET3x7C7Ry5mf83SK3', '', '', '1770362469', '1770367160');
 
 -- ----------------------------
 -- Table structure for kr_dict_item
@@ -4455,11 +4465,16 @@ CREATE TABLE `kr_exception` (
   `update_time` int(11) NOT NULL COMMENT '修改时间',
   `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=100059 DEFAULT CHARSET=utf8 COMMENT='异常表';
+) ENGINE=MyISAM AUTO_INCREMENT=100064 DEFAULT CHARSET=utf8 COMMENT='异常表';
 
 -- ----------------------------
 -- Records of kr_exception
 -- ----------------------------
+INSERT INTO `kr_exception` VALUES ('100059', 'D:\\Back End\\tp6-bdf-latest\\vendor\\topthink\\think-orm\\src\\db\\PDOConnection.php', '797', '10501', 'SQLSTATE[HY000]: General error: 1364 Field \'user_id\' doesn\'t have a default value', '127.0.0.1', '/wxapp/access/getAccessToken', 'POST', '1770435230', '1770435230', '1770435230', null);
+INSERT INTO `kr_exception` VALUES ('100060', 'D:\\Back End\\tp6-bdf-latest\\vendor\\topthink\\think-orm\\src\\db\\PDOConnection.php', '797', '10501', 'SQLSTATE[HY000]: General error: 1364 Field \'user_id\' doesn\'t have a default value', '127.0.0.1', '/wxapp/access/getAccessToken', 'POST', '1770435304', '1770435304', '1770435304', null);
+INSERT INTO `kr_exception` VALUES ('100061', 'D:\\Back End\\tp6-bdf-latest\\vendor\\topthink\\think-orm\\src\\db\\PDOConnection.php', '797', '10501', 'SQLSTATE[HY000]: General error: 1364 Field \'user_id\' doesn\'t have a default value', '127.0.0.1', '/wxapp/access/getAccessToken', 'POST', '1770435332', '1770435332', '1770435332', null);
+INSERT INTO `kr_exception` VALUES ('100062', 'D:\\Back End\\tp6-bdf-latest\\vendor\\topthink\\think-orm\\src\\db\\PDOConnection.php', '797', '10501', 'SQLSTATE[HY000]: General error: 1364 Field \'user_id\' doesn\'t have a default value', '127.0.0.1', '/wxapp/access/getAccessToken', 'POST', '1770435350', '1770435350', '1770435350', null);
+INSERT INTO `kr_exception` VALUES ('100063', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\WechatMini.php', '59', '0', '40163：code been used, rid: 6986b5a3-516d9046-22148f70', '127.0.0.1', '/wxapp/access/createAccessToken', 'POST', '1770436003', '1770436003', '1770436003', null);
 
 -- ----------------------------
 -- Table structure for kr_file
@@ -4518,7 +4533,7 @@ CREATE TABLE `kr_manager` (
 -- ----------------------------
 -- Records of kr_manager
 -- ----------------------------
-INSERT INTO `kr_manager` VALUES ('100001', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '硕硕', '', '6982e201848d9', '1', 'oftII6d4qesedHYqQiVtmpyuNVf4', 'ozVaf5-Q8V60ggn4Pa6X9vVS2LeI', '1', '127.0.0.1', '1770197012', '1769506538', '1770197012', null);
+INSERT INTO `kr_manager` VALUES ('100001', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '硕硕', '', '6982e201848d9', '1', 'oftII6d4qesedHYqQiVtmpyuNVf4', 'ozVaf5-Q8V60ggn4Pa6X9vVS2LeI', '1', '127.0.0.1', '1770429998', '1769506538', '1770429998', null);
 
 -- ----------------------------
 -- Table structure for kr_manager_role
@@ -4564,8 +4579,6 @@ CREATE TABLE `kr_user` (
   `avatar` varchar(255) DEFAULT '' COMMENT '头像地址',
   `gender` tinyint(1) DEFAULT '1' COMMENT '性别 1：男 2：女',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1：正常 0：禁用',
-  `wechat_unionid` varchar(32) DEFAULT NULL,
-  `wechat_mini_openid` varchar(32) DEFAULT NULL COMMENT '微信用户凭证',
   `last_login_ip` varchar(15) DEFAULT '' COMMENT '最后登录ip',
   `last_login_time` int(10) DEFAULT NULL COMMENT '最后登录时间',
   `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '注册时间',
@@ -4573,9 +4586,32 @@ CREATE TABLE `kr_user` (
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mobile` (`mobile`)
-) ENGINE=MyISAM AUTO_INCREMENT=100004 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=100002 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of kr_user
 -- ----------------------------
-INSERT INTO `kr_user` VALUES ('100003', null, '', '', '1', '1', '', 'oTXlW7ACdNN8DEnfG5Ckogofkv2s', '127.0.0.1', '1770280207', '1770277390', '1770280207', null);
+
+-- ----------------------------
+-- Table structure for kr_user_wechat_mini
+-- ----------------------------
+DROP TABLE IF EXISTS `kr_user_wechat_mini`;
+CREATE TABLE `kr_user_wechat_mini` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) DEFAULT NULL,
+  `bind_mobile` varchar(255) DEFAULT NULL,
+  `wechat_unionid` varchar(32) DEFAULT NULL,
+  `wechat_mini_openid` varchar(32) NOT NULL,
+  `last_login_ip` varchar(15) DEFAULT '' COMMENT '最后登录ip',
+  `last_login_time` int(10) DEFAULT NULL COMMENT '最后登录时间',
+  `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '注册时间',
+  `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '修改时间',
+  `delete_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mobile` (`bind_mobile`)
+) ENGINE=MyISAM AUTO_INCREMENT=100003 DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+-- ----------------------------
+-- Records of kr_user_wechat_mini
+-- ----------------------------
+INSERT INTO `kr_user_wechat_mini` VALUES ('100002', null, null, '', 'oTXlW7ACdNN8DEnfG5Ckogofkv2s', '127.0.0.1', '1770436025', '1770435849', '1770436025', null);

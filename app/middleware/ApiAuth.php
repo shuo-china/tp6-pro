@@ -24,6 +24,13 @@ class ApiAuth
      */
     public function handle($request, \Closure $next)
     {
+        $this->authenticateRequest($request);
+
+        return $next($request);
+    }
+
+    protected function authenticateRequest($request): void
+    {
         // 检测请求方法类型是否允许
         if (!in_array(strtolower($request->method()), $this->allowRequestMethods)) {
             $this->error(405, '请求的方法被禁止', 'METHOD_NOT_ALLOWED');
@@ -38,7 +45,5 @@ class ApiAuth
 
         $request->clientId = $payload['sub'];
         $request->clientInfo = $payload['info'];
-
-        return $next($request);
     }
 }

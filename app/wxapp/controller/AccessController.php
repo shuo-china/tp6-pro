@@ -4,38 +4,51 @@ namespace app\wxapp\controller;
 
 use app\common\Auth;
 use app\wxapp\model\User;
+use app\wxapp\model\UserWechatMini;
 
 class AccessController extends BaseController
 {
     protected $middleware = [];
 
-    public function createToken()
+    public function createAccessToken()
     {
         $oauth = \thirdconnect\Oauth::wechat_mini();
         $result = $oauth->getToken();
+        $userWxapp = UserWechatMini::where('wechat_mini_openid', $result['openid'])->find();
 
-        $user = User::where('wechat_mini_openid', $result['openid'])->find();
-
-        if (empty($user)) {
-            User::create([
+        if (empty($userWxapp)) {
+            UserWechatMini::create([
                 'wechat_mini_openid' => $result['openid'],
                 'wechat_unionid' => isset($result['unionid']) ? $result['unionid'] : '',
             ]);
-            $user = User::where('wechat_mini_openid', $result['openid'])->find();
+            $userWxapp = UserWechatMini::where('wechat_mini_openid', $result['openid'])->find();
         }
 
-        if (!$user->status) {
-            $this->error(403, '该账号已被禁用', 'NOT_AUTH');
+        if ($userWxapp->user_id) {
+            $user = User::where('id', $userWxapp->user_id)->find();
+            if (!$user->status) {
+                $this->error(403, '该账号已被禁用', 'NOT_AUTH');
+            }
+            $accessToken = Auth::setAccessToken($user->id, array_merge([
+                'level' => 'bound',
+            ], $user->toArray()));
+            $this->app->event->trigger('UserLoginAfter', $userWxapp);
+            $this->app->event->trigger('UserLoginAfter', $user);
+            $this->success(201, [
+                'level' => 'bound',
+                'token_info' => $accessToken,
+            ]);
+        } else {
+            $accessToken = Auth::setAccessToken($userWxapp->id, array_merge([
+                'level' => 'guest',
+            ], $userWxapp->toArray()));
+            $this->app->event->trigger('UserLoginAfter', $userWxapp);
+            $this->success(201, [
+                'level' => 'guest',
+                'token_info' => $accessToken,
+            ]);
         }
 
-        $accessToken = Auth::setAccessToken($user->id, $user);
-
-        $this->app->event->trigger('UserLoginAfter', $user);
-
-        $result = array_merge([
-            'is_mobile_bound' => $user->mobile ? true : false,
-        ], $accessToken);
-
-        $this->success(201, $result);
     }
+
 }

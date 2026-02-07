@@ -3,9 +3,45 @@
 namespace app\wxapp\controller;
 
 use app\wxapp\model\User;
+use app\wxapp\model\UserWechatMini;
 
 class UserController extends BaseController
 {
+    protected $middleware = [
+        'wxapp_api_auth:guest' => [
+            'only' => [
+                'bindMobile'
+            ],
+        ],
+        'wxapp_api_auth:bound' => [
+            'except' => [
+                'bindMobile'
+            ],
+        ],
+    ];
+
+    public function bindMobile()
+    {
+        $code = $this->request->param('code');
+        $mobileInfo = $this->getWechatMiniMobile($code);
+        $purePhoneNumber = $mobileInfo['phone_info']['purePhoneNumber'];
+
+        $user = User::where('mobile', $purePhoneNumber)->find();
+        if (!$user) {
+            $user = User::create([
+                'nickname' => $purePhoneNumber,
+                'mobile' => $purePhoneNumber,
+            ]);
+        }
+
+        UserWechatMini::where('id', $this->request->clientId)->update([
+            'user_id' => $user->id,
+            'bind_mobile' => $purePhoneNumber,
+        ]);
+
+        $this->success(201);
+    }
+
     public function currentUser()
     {
         $user = User::where('id', $this->request->clientId)->find();
@@ -13,23 +49,11 @@ class UserController extends BaseController
         $this->success(200, $user);
     }
 
-    public function bindMobile()
-    {
-        $code = $this->request->param('code');
-
-        $mobileInfo = $this->getWechatMiniMobile($code);
-
-        User::where('id', $this->request->clientId)->update([
-            'mobile' => $mobileInfo['phone_info']['purePhoneNumber']
-        ]);
-
-        $this->success(201);
-    }
-
     public function unBindMobile()
     {
-        User::where('id', $this->request->clientId)->update([
-            'mobile' => null
+        UserWechatMini::where('id', $this->request->clientId)->update([
+            'user_id' => null,
+            'bind_mobile' => null,
         ]);
 
         $this->success(201);

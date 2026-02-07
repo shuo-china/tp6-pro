@@ -19,11 +19,15 @@ if (!function_exists('get_full_path')) {
 if (!function_exists('get_file')) {
     /**
      * 批量获取附件路径
-     * @param array $key 附件key
-     * @return array | null
+     * @param string $key 附件key
+     * @return object | null
      */
     function get_file($key = '')
     {
+        if (!$key) {
+            return null;
+        }
+
         $file = new \app\admin\model\File();
 
         $data = $file->where('key', $key)->field('id,key,path,name')->find();
@@ -35,12 +39,16 @@ if (!function_exists('get_file')) {
 if (!function_exists('get_files')) {
     /**
      * 批量获取附件路径
-     * @param array $keys 附件key
+     * @param array | string $keys 附件key
      * @return array
      */
     function get_files($keys = '')
     {
         !is_array($keys) && $keys = explode(',', $keys);
+
+        if (!$keys) {
+            return [];
+        }
 
         $file = new \app\admin\model\File();
         $list = $file->where('key', 'in', $keys)->field('id,key,path,name')->select()->toArray();
