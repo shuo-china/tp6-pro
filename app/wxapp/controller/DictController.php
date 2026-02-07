@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\controller;
+namespace app\wxapp\controller;
 
 use app\wxapp\model\DictType;
 use app\wxapp\model\DictItem;
