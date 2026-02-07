@@ -51,7 +51,7 @@ class UserController extends BaseController
 
     public function unBindMobile()
     {
-        UserWechatMini::where('id', $this->request->clientId)->update([
+        UserWechatMini::where('id', $this->request->userWxappId)->update([
             'user_id' => null,
             'bind_mobile' => null,
         ]);

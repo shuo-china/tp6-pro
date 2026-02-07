@@ -29,9 +29,11 @@ class AccessController extends BaseController
             if (!$user->status) {
                 $this->error(403, '该账号已被禁用', 'NOT_AUTH');
             }
-            $accessToken = Auth::setAccessToken($user->id, array_merge([
+            $accessToken = Auth::setAccessToken($user->id, [
                 'level' => 'bound',
-            ], $user->toArray()));
+                'user_info' => $user->toArray(),
+                'user_wxapp_info' => $userWxapp->toArray(),
+            ]);
             $this->app->event->trigger('UserLoginAfter', $userWxapp);
             $this->app->event->trigger('UserLoginAfter', $user);
             $this->success(201, [
@@ -39,9 +41,10 @@ class AccessController extends BaseController
                 'token_info' => $accessToken,
             ]);
         } else {
-            $accessToken = Auth::setAccessToken($userWxapp->id, array_merge([
+            $accessToken = Auth::setAccessToken($userWxapp->id, [
                 'level' => 'guest',
-            ], $userWxapp->toArray()));
+                'user_wxapp_info' => $userWxapp->toArray(),
+            ]);
             $this->app->event->trigger('UserLoginAfter', $userWxapp);
             $this->success(201, [
                 'level' => 'guest',

@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace app\middleware;
 
-use app\common\Send;
-use app\common\Auth;
-
 class WxappApiAuth extends ApiAuth
 {
     protected $levels = [
@@ -25,6 +22,16 @@ class WxappApiAuth extends ApiAuth
 
         if ($this->levels[$level] > $this->levels[$request->clientInfo['level']]) {
             $this->error(403, '没有权限', 'NO_AUTH');
+        }
+
+        if ($this->levels[$request->clientInfo['level']] >= $this->levels['guest']) {
+            $request->userWxappId = $request->clientInfo['user_wxapp_info']['id'];
+            $request->userWxappInfo = $request->clientInfo['user_wxapp_info'];
+        }
+
+        if ($this->levels[$request->clientInfo['level']] >= $this->levels['bound']) {
+            $request->userId = $request->clientInfo['user_info']['id'];
+            $request->userInfo = $request->clientInfo['user_info'];
         }
 
         return $next($request);
