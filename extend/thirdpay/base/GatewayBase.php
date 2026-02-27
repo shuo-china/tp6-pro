@@ -22,7 +22,7 @@ abstract class gatewayBase
     /**
      * 生成24位的单号
      */
-    protected function getOutTradeNo()
+    public function getOutTradeNo()
     {
         $orderIdMain = date('YmdHis') . rand(10000000, 99999999);
         $orderIdLen = strlen($orderIdMain);

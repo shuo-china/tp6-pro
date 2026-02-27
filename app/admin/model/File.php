@@ -23,20 +23,4 @@ class File extends BaseModel
     {
         return $this->where('key', $key)->value('name');
     }
-
-    /**
-     * 根据key删除附件
-     * @param string|array $keys 附件key
-     */
-    public function deleteFile($keys = '')
-    {
-        $result = self::destroy(function ($query) use ($keys) {
-            $query->where('key', 'in', $keys);
-        });
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

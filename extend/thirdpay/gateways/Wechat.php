@@ -35,9 +35,12 @@ class Wechat extends GatewayBase
     {
         $params = array_merge([
             'mchid' => $this->config['merchant_id'],
-            'out_trade_no' => $this->getOutTradeNo(),
             'notify_url' => $this->config['notify_url'],
         ], $params);
+
+        if (!isset($params['out_trade_no'])) {
+            $params['out_trade_no'] = $this->getOutTradeNo();
+        }
 
         $resp = $this->instance
             ->chain('v3/pay/transactions/native')
