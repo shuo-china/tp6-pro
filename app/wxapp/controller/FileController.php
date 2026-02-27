@@ -16,14 +16,14 @@ class FileController extends BaseController
         }
         $fileIns = new File($uploadedFile);
 
-        // $rules = [
-        //     'maxSize' => $fileIns->isImage() ? config('sys.upload.image_size') * 1024 : config('sys.upload.file_size') * 1024,
-        //     'allowExt' => $fileIns->isImage() ? config('sys.upload.image_ext') : config('sys.upload.file_ext')
-        // ];
+        $rules = [
+            'maxSize' => $fileIns->isImage() ? config('sys.upload.image_size') * 1024 : config('sys.upload.file_size') * 1024,
+            'allowExt' => $fileIns->isImage() ? config('sys.upload.image_ext') : config('sys.upload.file_ext')
+        ];
 
-        // if (!$fileIns->check($rules)) {
-        //     $this->error(403, $fileIns->errorMessage, 'FILE_LIMIT');
-        // }
+        if (!$fileIns->check($rules)) {
+            $this->error(403, $fileIns->errorMessage, 'FILE_LIMIT');
+        }
 
         $fileInfo = $fileIns->save();
 
