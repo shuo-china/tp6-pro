@@ -26,17 +26,17 @@ class UserController extends BaseController
         $mobileInfo = $this->getWechatMiniMobile($code);
         $purePhoneNumber = $mobileInfo['phone_info']['purePhoneNumber'];
 
+        $userWxapp = UserWechatMini::where('id', '<>', $this->request->clientId)->where('bind_mobile', '=', $purePhoneNumber)->find();
+        if ($userWxapp) {
+            $this->error(401, '该手机号已被其他用户绑定', 'BIND_MOBILE_EXISTS');
+        }
+
         $user = User::where('mobile', $purePhoneNumber)->find();
         if (!$user) {
             $user = User::create([
                 'nickname' => $purePhoneNumber,
                 'mobile' => $purePhoneNumber,
             ]);
-        }
-
-        $userWxapp = UserWechatMini::where('id', '<>', $this->request->clientId)->where('bind_mobile', '=', $purePhoneNumber)->find();
-        if ($userWxapp) {
-            $this->error(401, '该手机号已被其他用户绑定', 'BIND_MOBILE_EXISTS');
         }
 
         UserWechatMini::where('id', $this->request->clientId)->update([
