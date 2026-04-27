@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2026-02-07 11:48:16
+Date: 2026-04-27 15:17:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4465,7 +4465,7 @@ CREATE TABLE `kr_exception` (
   `update_time` int(11) NOT NULL COMMENT '修改时间',
   `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=100064 DEFAULT CHARSET=utf8 COMMENT='异常表';
+) ENGINE=MyISAM AUTO_INCREMENT=100072 DEFAULT CHARSET=utf8 COMMENT='异常表';
 
 -- ----------------------------
 -- Records of kr_exception
@@ -4475,6 +4475,14 @@ INSERT INTO `kr_exception` VALUES ('100060', 'D:\\Back End\\tp6-bdf-latest\\vend
 INSERT INTO `kr_exception` VALUES ('100061', 'D:\\Back End\\tp6-bdf-latest\\vendor\\topthink\\think-orm\\src\\db\\PDOConnection.php', '797', '10501', 'SQLSTATE[HY000]: General error: 1364 Field \'user_id\' doesn\'t have a default value', '127.0.0.1', '/wxapp/access/getAccessToken', 'POST', '1770435332', '1770435332', '1770435332', null);
 INSERT INTO `kr_exception` VALUES ('100062', 'D:\\Back End\\tp6-bdf-latest\\vendor\\topthink\\think-orm\\src\\db\\PDOConnection.php', '797', '10501', 'SQLSTATE[HY000]: General error: 1364 Field \'user_id\' doesn\'t have a default value', '127.0.0.1', '/wxapp/access/getAccessToken', 'POST', '1770435350', '1770435350', '1770435350', null);
 INSERT INTO `kr_exception` VALUES ('100063', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\WechatMini.php', '59', '0', '40163：code been used, rid: 6986b5a3-516d9046-22148f70', '127.0.0.1', '/wxapp/access/createAccessToken', 'POST', '1770436003', '1770436003', '1770436003', null);
+INSERT INTO `kr_exception` VALUES ('100064', 'D:\\Back End\\tp6-bdf-latest\\vendor\\topthink\\framework\\src\\think\\Container.php', '461', '0', '方法参数错误:key', '127.0.0.1', '/wxapp/file/delete/', 'GET', '1772172974', '1772172974', '1772172974', null);
+INSERT INTO `kr_exception` VALUES ('100065', 'D:\\Back End\\tp6-bdf-latest\\app\\wxapp\\controller\\FileController.php', '83', '0', 'Call to a member function getData() on null', '127.0.0.1', '/wxapp/file/delete/?key=asd', 'GET', '1772183517', '1772183517', '1772183517', null);
+INSERT INTO `kr_exception` VALUES ('100066', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\WechatMini.php', '59', '0', '40029：invalid code, rid: 69afb4a2-1cebc86d-6be11687', '127.0.0.1', '/wxapp/access/createAccessToken', 'POST', '1773122720', '1773122723', '1773122723', null);
+INSERT INTO `kr_exception` VALUES ('100067', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\WechatMini.php', '59', '0', '40029：invalid code, rid: 69afb4aa-11c238c2-50fc47c3', '127.0.0.1', '/wxapp/access/createAccessToken', 'POST', '1773122729', '1773122730', '1773122730', null);
+INSERT INTO `kr_exception` VALUES ('100068', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\WechatMini.php', '59', '0', '40029：invalid code, rid: 69afb556-636b0856-269ec371', '127.0.0.1', '/wxapp/access/createAccessToken', 'POST', '1773122902', '1773122902', '1773122902', null);
+INSERT INTO `kr_exception` VALUES ('100069', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\WechatMini.php', '59', '0', '40029：invalid code, rid: 69afb6ba-6d0e06e5-25633e84', '127.0.0.1', '/wxapp/access/createAccessToken', 'POST', '1773123258', '1773123258', '1773123258', null);
+INSERT INTO `kr_exception` VALUES ('100070', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\WechatMini.php', '59', '0', '40029：invalid code, rid: 69afb705-180cf11e-5f5f3d42', '127.0.0.1', '/wxapp/access/createAccessToken', 'POST', '1773123333', '1773123333', '1773123333', null);
+INSERT INTO `kr_exception` VALUES ('100071', 'D:\\Back End\\tp6-bdf-latest\\extend\\thirdconnect\\gateways\\WechatMini.php', '59', '0', '40029：invalid code, rid: 69afb719-1bb70423-1962fbcb', '127.0.0.1', '/wxapp/access/createAccessToken', 'POST', '1773123353', '1773123353', '1773123353', null);
 
 -- ----------------------------
 -- Table structure for kr_file
@@ -4499,13 +4507,45 @@ CREATE TABLE `kr_file` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `path` (`path`),
   UNIQUE KEY `key` (`key`)
-) ENGINE=MyISAM AUTO_INCREMENT=10003 DEFAULT CHARSET=utf8 COMMENT='文件表';
+) ENGINE=MyISAM AUTO_INCREMENT=10042 DEFAULT CHARSET=utf8 COMMENT='文件表';
 
 -- ----------------------------
 -- Records of kr_file
 -- ----------------------------
 INSERT INTO `kr_file` VALUES ('10001', '6982e1d1346fd', '/uploads/images/20260204/2bba14f7dab0991793357d9aa8f6793e.png', 'logo.png', 'png', 'image/png', '7791', 'b188d24144a01a835e6b2dcc73929821', 'b7e6f8347cd2e24a01fbd9a1e1918214cf63c31b', '480', '119', '1', 'admin', '1770185169', '1770185169');
 INSERT INTO `kr_file` VALUES ('10002', '6982e201848d9', '/uploads/images/20260204/8613c0b930ff8e9aca36820db4394296.jpg', 'avatar.jpg', 'jpg', 'image/jpeg', '71146', '1fd423e556a702a31f9643e36fef0106', '893ace707c990249395ec6dc55b4829a94b79c1b', '425', '425', '1', 'admin', '1770185217', '1770185217');
+INSERT INTO `kr_file` VALUES ('10003', '69a114e19b746', '/uploads/images/20260227/f29ef1b6ed4a8a9f5bf002cc98ff764f.png', 'EL7-WXEJCgJ_990edbc9f82258f136f7b1b6a4288fc8.png', 'png', 'image/png', '33017', '990edbc9f82258f136f7b1b6a4288fc8', '72e76b53d143a01df4537159539d4449e5dc920e', '83', '83', '1', 'wxapp', '1772164322', '1772164322');
+INSERT INTO `kr_file` VALUES ('10004', '69a1154d1294d', '/uploads/images/20260227/f0936da67d65c900edee90efabad67fe.png', 'ZnIqkYiy0H7_990edbc9f82258f136f7b1b6a4288fc8.png', 'png', 'image/png', '33017', '990edbc9f82258f136f7b1b6a4288fc8', '72e76b53d143a01df4537159539d4449e5dc920e', '83', '83', '1', 'wxapp', '1772164429', '1772164429');
+INSERT INTO `kr_file` VALUES ('10005', '69a115facbfbd', '/uploads/images/20260227/b262550307ad00c0cd8755d697a8937d.png', 'PJhyOJ1JwlJP990edbc9f82258f136f7b1b6a4288fc8.png', 'png', 'image/png', '33017', '990edbc9f82258f136f7b1b6a4288fc8', '72e76b53d143a01df4537159539d4449e5dc920e', '83', '83', '1', 'wxapp', '1772164602', '1772164602');
+INSERT INTO `kr_file` VALUES ('10006', '69a1166de58ad', '/uploads/images/20260227/0f2ed06e209809cfa78412a50b62385a.jpg', '77HWNVovg_vU1fd423e556a702a31f9643e36fef0106.jpg', 'jpg', 'image/jpeg', '71146', '1fd423e556a702a31f9643e36fef0106', '893ace707c990249395ec6dc55b4829a94b79c1b', '425', '425', '1', 'wxapp', '1772164717', '1772164717');
+INSERT INTO `kr_file` VALUES ('10007', '69a117f965af8', '/uploads/images/20260227/1662ef7484e8a485cf988c717f9a81de.jpg', 'OUmtwTeKrdQKa4065ebd23b200f73c3ec799eeda66a1.jpg', 'jpg', 'image/jpeg', '338755', 'a4065ebd23b200f73c3ec799eeda66a1', 'f0208a00958883b04f0e17f196174f5705fe6079', '1280', '1707', '1', 'wxapp', '1772165113', '1772165113');
+INSERT INTO `kr_file` VALUES ('10008', '69a1187469be1', '/uploads/images/20260227/279aab18e825594ac04f788871c938ea.jpeg', 'ShONCaexSttO5fd37d890afea3641142d511543306cc.jpeg', 'jpeg', 'image/jpeg', '24465', '5fd37d890afea3641142d511543306cc', '9205572ff24355fd5aef65afa117bfeca1257e31', '1080', '1108', '1', 'wxapp', '1772165236', '1772165236');
+INSERT INTO `kr_file` VALUES ('10009', '69a118900982f', '/uploads/images/20260227/5eceb5b7f3112e4cdc4c305fe2e8bade.png', 'J7Mox1Jo_gTf990edbc9f82258f136f7b1b6a4288fc8.png', 'png', 'image/png', '33017', '990edbc9f82258f136f7b1b6a4288fc8', '72e76b53d143a01df4537159539d4449e5dc920e', '83', '83', '1', 'wxapp', '1772165264', '1772165264');
+INSERT INTO `kr_file` VALUES ('10011', '69a136b74fc5c', '/uploads/images/20260227/9522d6c254b32fe3c2fc2fd7d64258ef.jpeg', 'vivQalDunIJX5fd37d890afea3641142d511543306cc.jpeg', 'jpeg', 'image/jpeg', '24465', '5fd37d890afea3641142d511543306cc', '9205572ff24355fd5aef65afa117bfeca1257e31', '1080', '1108', '1', 'wxapp', '1772172983', '1772172983');
+INSERT INTO `kr_file` VALUES ('10012', '69a13a9379c63', '/uploads/images/20260227/f8d8d3b0ed63c8144f3bebcb1ef24908.png', 'G9TxbAKcYha7f987d949d0210c474cdc7076baa8e9b0.png', 'png', 'image/png', '488977', 'f987d949d0210c474cdc7076baa8e9b0', '7f7910bbdbfbf5302bf4653fd024c8e2628e9615', '1917', '1025', '1', 'wxapp', '1772173971', '1772173971');
+INSERT INTO `kr_file` VALUES ('10013', '69a13a95942dd', '/uploads/images/20260227/865e6104d0c9c605dae73bfc235e499c.png', 'YmjMaHSS7mcN1180cc16556e01fc90c05c38f9cade39.png', 'png', 'image/png', '1637600', '1180cc16556e01fc90c05c38f9cade39', 'cf33388cc5acc78aa1b8eea5c390721413cee010', '1920', '1080', '1', 'wxapp', '1772173973', '1772173973');
+INSERT INTO `kr_file` VALUES ('10014', '69a13d58537da', '/uploads/images/20260227/f941c8ffa58772e6fbeef89ac56a17f5.png', 'bl11C5C_6UCce147bdebf32ef9cb7ce137ed0ed5d3a6.png', 'png', 'image/png', '12259', 'e147bdebf32ef9cb7ce137ed0ed5d3a6', 'cf9b8b05cfbc48d3701aca946bbb48f566053555', '400', '400', '1', 'wxapp', '1772174681', '1772174681');
+INSERT INTO `kr_file` VALUES ('10015', '69a13d5b4e77a', '/uploads/images/20260227/60e508831092e57f161e66963b52925b.png', 'A4WA1hL4v7-4990edbc9f82258f136f7b1b6a4288fc8.png', 'png', 'image/png', '33017', '990edbc9f82258f136f7b1b6a4288fc8', '72e76b53d143a01df4537159539d4449e5dc920e', '83', '83', '1', 'wxapp', '1772174683', '1772174683');
+INSERT INTO `kr_file` VALUES ('10016', '69a13d7271891', '/uploads/images/20260227/2035c19100f9b223173b9ece39cb62dc.png', 'WjyYGDZx3Fin8e9e4a0ef02b0c0386e0cf07d7464564.png', 'png', 'image/png', '41731', '8e9e4a0ef02b0c0386e0cf07d7464564', 'c38cd8276ac396c6e5d94d4e110ee78fadb089f4', '275', '59', '1', 'wxapp', '1772174706', '1772174706');
+INSERT INTO `kr_file` VALUES ('10017', '69a13d7488bea', '/uploads/images/20260227/e4ef082ea0a1024ef87b302cfc8ab26e.jpeg', 'V1wYDRd74Bs75fd37d890afea3641142d511543306cc.jpeg', 'jpeg', 'image/jpeg', '24465', '5fd37d890afea3641142d511543306cc', '9205572ff24355fd5aef65afa117bfeca1257e31', '1080', '1108', '1', 'wxapp', '1772174708', '1772174708');
+INSERT INTO `kr_file` VALUES ('10018', '69a13d7f0a32d', '/uploads/images/20260227/249fcd2404dfb216ac55275c09588ae8.png', '9YzXuGL2OVCs8e9e4a0ef02b0c0386e0cf07d7464564.png', 'png', 'image/png', '41731', '8e9e4a0ef02b0c0386e0cf07d7464564', 'c38cd8276ac396c6e5d94d4e110ee78fadb089f4', '275', '59', '1', 'wxapp', '1772174719', '1772174719');
+INSERT INTO `kr_file` VALUES ('10019', '69a13d811dda7', '/uploads/images/20260227/df28c1e3415843cc5aff383b733e8456.jpeg', 'A20pJUjkA79q5fd37d890afea3641142d511543306cc.jpeg', 'jpeg', 'image/jpeg', '24465', '5fd37d890afea3641142d511543306cc', '9205572ff24355fd5aef65afa117bfeca1257e31', '1080', '1108', '1', 'wxapp', '1772174721', '1772174721');
+INSERT INTO `kr_file` VALUES ('10020', '69a13d8338ac7', '/uploads/images/20260227/9e8a3bcab82d043cdc2e267d663c9d23.jpg', '677b2iWcZxC1a95197a4c7454a50db95b987d34517ff.jpg', 'jpg', 'image/jpeg', '931399', 'a95197a4c7454a50db95b987d34517ff', 'ea01ee54edd0391d91f64078ff885ab821e170ed', '1206', '1158', '1', 'wxapp', '1772174723', '1772174723');
+INSERT INTO `kr_file` VALUES ('10021', '69a13d8a0f310', '/uploads/images/20260227/2e80e216a2b766f843d4790739b4aaeb.jpg', 'L-IsCNJxsiXF1fd423e556a702a31f9643e36fef0106.jpg', 'jpg', 'image/jpeg', '71146', '1fd423e556a702a31f9643e36fef0106', '893ace707c990249395ec6dc55b4829a94b79c1b', '425', '425', '1', 'wxapp', '1772174730', '1772174730');
+INSERT INTO `kr_file` VALUES ('10022', '69a13d8c25ab1', '/uploads/images/20260227/c5e82743305462c5d44b7853cb1fe041.png', '7HgETL7Y6-bAe147bdebf32ef9cb7ce137ed0ed5d3a6.png', 'png', 'image/png', '12259', 'e147bdebf32ef9cb7ce137ed0ed5d3a6', 'cf9b8b05cfbc48d3701aca946bbb48f566053555', '400', '400', '1', 'wxapp', '1772174732', '1772174732');
+INSERT INTO `kr_file` VALUES ('10023', '69a13d8e36e3f', '/uploads/images/20260227/cef45632b0f615c9e4941f00b4a844c2.png', '_Zo_TZfQ-uqE990edbc9f82258f136f7b1b6a4288fc8.png', 'png', 'image/png', '33017', '990edbc9f82258f136f7b1b6a4288fc8', '72e76b53d143a01df4537159539d4449e5dc920e', '83', '83', '1', 'wxapp', '1772174734', '1772174734');
+INSERT INTO `kr_file` VALUES ('10024', '69a13d904b2da', '/uploads/images/20260227/c325e1f453f1de6d4a77e57ca545e57b.ico', 'u4e-cb27hPdc2e4a98491d48124f075890f6243ffdc4.ico', 'ico', 'image/vnd.microsoft.icon', '16958', '2e4a98491d48124f075890f6243ffdc4', '029d0d5659c0d6cdc71c86c67c4cafe0d46df613', '64', '64', '1', 'wxapp', '1772174736', '1772174736');
+INSERT INTO `kr_file` VALUES ('10025', '69a13d925f6f3', '/uploads/files/20260227/ae6e85931c8fc4231c8a79542475ecd3.svg', 'DWALo1DDlSgc128df25275aa95249324fcdcacb80f82.svg', 'svg', 'image/svg+xml', '3134', '128df25275aa95249324fcdcacb80f82', '698af3b0afaa2163734c2dca697ff829512f4d17', null, null, '0', 'wxapp', '1772174738', '1772174738');
+INSERT INTO `kr_file` VALUES ('10026', '69a13d9476483', '/uploads/images/20260227/fce4786e727e1d1e13764e1d2d370cfc.jpg', 'oURJli7G7c7_a4065ebd23b200f73c3ec799eeda66a1.jpg', 'jpg', 'image/jpeg', '338755', 'a4065ebd23b200f73c3ec799eeda66a1', 'f0208a00958883b04f0e17f196174f5705fe6079', '1280', '1707', '1', 'wxapp', '1772174740', '1772174740');
+INSERT INTO `kr_file` VALUES ('10027', '69a13db216250', '/uploads/images/20260227/8e1e679001e8208d8fd0715d81393491.png', 'BNWB7QJ4bCDu990edbc9f82258f136f7b1b6a4288fc8.png', 'png', 'image/png', '33017', '990edbc9f82258f136f7b1b6a4288fc8', '72e76b53d143a01df4537159539d4449e5dc920e', '83', '83', '1', 'wxapp', '1772174770', '1772174770');
+INSERT INTO `kr_file` VALUES ('10028', '69a13dbc338c3', '/uploads/images/20260227/2f82d41810ffc033ee6bb7c0967bab6e.png', '7wJwtlPP6uWWe147bdebf32ef9cb7ce137ed0ed5d3a6.png', 'png', 'image/png', '12259', 'e147bdebf32ef9cb7ce137ed0ed5d3a6', 'cf9b8b05cfbc48d3701aca946bbb48f566053555', '400', '400', '1', 'wxapp', '1772174780', '1772174780');
+INSERT INTO `kr_file` VALUES ('10029', '69a13dbe4844e', '/uploads/images/20260227/6f9a68d487e03e720f7460bb5b178313.png', '1G78YHWtJLfc990edbc9f82258f136f7b1b6a4288fc8.png', 'png', 'image/png', '33017', '990edbc9f82258f136f7b1b6a4288fc8', '72e76b53d143a01df4537159539d4449e5dc920e', '83', '83', '1', 'wxapp', '1772174782', '1772174782');
+INSERT INTO `kr_file` VALUES ('10030', '69a13dc05adef', '/uploads/images/20260227/95b5bc8f68ee6563f890702aa35d1234.png', 'AFDFuXQ4XiX1b188d24144a01a835e6b2dcc73929821.png', 'png', 'image/png', '7791', 'b188d24144a01a835e6b2dcc73929821', 'b7e6f8347cd2e24a01fbd9a1e1918214cf63c31b', '480', '119', '1', 'wxapp', '1772174784', '1772174784');
+INSERT INTO `kr_file` VALUES ('10031', '69a13dc26dbab', '/uploads/images/20260227/fdcf200066f0dc9f8279628f427d96d8.jpg', 'ujzUU_1d2dvra4065ebd23b200f73c3ec799eeda66a1.jpg', 'jpg', 'image/jpeg', '338755', 'a4065ebd23b200f73c3ec799eeda66a1', 'f0208a00958883b04f0e17f196174f5705fe6079', '1280', '1707', '1', 'wxapp', '1772174786', '1772174786');
+INSERT INTO `kr_file` VALUES ('10039', '69a145ff31f82', '/uploads/images/20260227/acc7ea2a1a95237922429eb0ea46fb83.png', 'gAMaSPs3ohTH990edbc9f82258f136f7b1b6a4288fc8.png', 'png', 'image/png', '33017', '990edbc9f82258f136f7b1b6a4288fc8', '72e76b53d143a01df4537159539d4449e5dc920e', '83', '83', '1', 'wxapp', '1772176895', '1772176895');
+INSERT INTO `kr_file` VALUES ('10037', '69a13e7bc7a99', '/uploads/images/20260227/3aa43c3882324584844528b6b937ffe2.png', '70gf2uPYwqfn8e9e4a0ef02b0c0386e0cf07d7464564.png', 'png', 'image/png', '41731', '8e9e4a0ef02b0c0386e0cf07d7464564', 'c38cd8276ac396c6e5d94d4e110ee78fadb089f4', '275', '59', '1', 'wxapp', '1772174971', '1772174971');
+INSERT INTO `kr_file` VALUES ('10038', '69a13e7dd9f6e', '/uploads/images/20260227/0c88642be64840f78f9af9b3ce0eb6f3.jpeg', '7t-rvmK2_4K-5fd37d890afea3641142d511543306cc.jpeg', 'jpeg', 'image/jpeg', '24465', '5fd37d890afea3641142d511543306cc', '9205572ff24355fd5aef65afa117bfeca1257e31', '1080', '1108', '1', 'wxapp', '1772174973', '1772174973');
+INSERT INTO `kr_file` VALUES ('10040', '69a14787d9e46', '/uploads/images/20260227/263909874fdee1a6ec4151c8cb4355c7.jpg', 'Q5zukZj1VPdea95197a4c7454a50db95b987d34517ff.jpg', 'jpg', 'image/jpeg', '931399', 'a95197a4c7454a50db95b987d34517ff', 'ea01ee54edd0391d91f64078ff885ab821e170ed', '1206', '1158', '1', 'wxapp', '1772177287', '1772177287');
 
 -- ----------------------------
 -- Table structure for kr_manager
@@ -4586,11 +4626,12 @@ CREATE TABLE `kr_user` (
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mobile` (`mobile`)
-) ENGINE=MyISAM AUTO_INCREMENT=100002 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=100003 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of kr_user
 -- ----------------------------
+INSERT INTO `kr_user` VALUES ('100002', '13337935576', '13337935576', '', '1', '1', '127.0.0.1', '1772183514', '1770447503', '1772183514', null);
 
 -- ----------------------------
 -- Table structure for kr_user_wechat_mini
@@ -4599,7 +4640,6 @@ DROP TABLE IF EXISTS `kr_user_wechat_mini`;
 CREATE TABLE `kr_user_wechat_mini` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) DEFAULT NULL,
-  `bind_mobile` varchar(255) DEFAULT NULL,
   `wechat_unionid` varchar(32) DEFAULT NULL,
   `wechat_mini_openid` varchar(32) NOT NULL,
   `last_login_ip` varchar(15) DEFAULT '' COMMENT '最后登录ip',
@@ -4607,11 +4647,10 @@ CREATE TABLE `kr_user_wechat_mini` (
   `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '注册时间',
   `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '修改时间',
   `delete_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mobile` (`bind_mobile`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=100003 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of kr_user_wechat_mini
 -- ----------------------------
-INSERT INTO `kr_user_wechat_mini` VALUES ('100002', null, null, '', 'oTXlW7ACdNN8DEnfG5Ckogofkv2s', '127.0.0.1', '1770436025', '1770435849', '1770436025', null);
+INSERT INTO `kr_user_wechat_mini` VALUES ('100002', '100002', '', 'oTXlW7ACdNN8DEnfG5Ckogofkv2s', '127.0.0.1', '1772183514', '1770435849', '1772183514', null);

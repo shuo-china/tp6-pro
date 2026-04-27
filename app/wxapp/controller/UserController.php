@@ -20,6 +20,13 @@ class UserController extends BaseController
         ],
     ];
 
+    public function currentUser()
+    {
+        $user = User::where('id', $this->request->clientId)->find();
+
+        $this->success(200, $user);
+    }
+
     public function bindMobile()
     {
         $code = $this->request->param('code');
@@ -33,7 +40,7 @@ class UserController extends BaseController
                 'mobile' => $purePhoneNumber,
             ]);
         } else {
-            $userWxapp = UserWechatMini::where('id', $this->request->clientId)->where('user_id', $user->id)->find();
+            $userWxapp = UserWechatMini::where('user_id', $user->id)->find();
             if ($userWxapp) {
                 $this->error(401, '该手机号已被绑定', 'BIND_MOBILE_EXISTS');
             }
@@ -44,13 +51,6 @@ class UserController extends BaseController
         ]);
 
         $this->success(201);
-    }
-
-    public function currentUser()
-    {
-        $user = User::where('id', $this->request->clientId)->find();
-
-        $this->success(200, $user);
     }
 
     public function unBindMobile()
