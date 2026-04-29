@@ -17,11 +17,10 @@ class AccessController extends BaseController
         $userWxapp = UserWechatMini::where('wechat_mini_openid', $result['openid'])->find();
 
         if (empty($userWxapp)) {
-            UserWechatMini::create([
+            $userWxapp = UserWechatMini::create([
                 'wechat_mini_openid' => $result['openid'],
                 'wechat_unionid' => isset($result['unionid']) ? $result['unionid'] : '',
             ]);
-            $userWxapp = UserWechatMini::where('wechat_mini_openid', $result['openid'])->find();
         }
 
         if ($userWxapp->user_id) {
