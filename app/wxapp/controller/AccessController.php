@@ -23,15 +23,23 @@ class AccessController extends BaseController
             ]);
         }
 
+        $userWxappInfo = [
+            'id' => $userWxapp->id
+        ];
+
         if ($userWxapp->user_id) {
             $user = User::where('id', $userWxapp->user_id)->find();
             if (!$user->status) {
                 $this->error(403, '该账号已被禁用', 'NOT_AUTH');
             }
+
+            $userInfo = [
+                'id' => $user->id
+            ];
             $accessToken = Auth::setAccessToken($user->id, [
                 'level' => 'bound',
-                'user_info' => $user->toArray(),
-                'user_wxapp_info' => $userWxapp->toArray(),
+                'user_info' => $userInfo,
+                'user_wxapp_info' => $userWxappInfo,
             ]);
             $this->app->event->trigger('UserLoginAfter', $userWxapp);
             $this->app->event->trigger('UserLoginAfter', $user);
@@ -42,7 +50,7 @@ class AccessController extends BaseController
         } else {
             $accessToken = Auth::setAccessToken($userWxapp->id, [
                 'level' => 'guest',
-                'user_wxapp_info' => $userWxapp->toArray(),
+                'user_wxapp_info' => $userWxappInfo,
             ]);
             $this->app->event->trigger('UserLoginAfter', $userWxapp);
             $this->success(201, [

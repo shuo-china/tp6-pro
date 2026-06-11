@@ -6,6 +6,13 @@ use app\admin\model\Manager;
 
 class ManagerController extends BaseController
 {
+    protected $middleware = [
+        'api_auth',
+        'api_permission' => [
+            'except' => ['currentManager']
+        ]
+    ];
+
     public function currentManager()
     {
         $manager = Manager::with([

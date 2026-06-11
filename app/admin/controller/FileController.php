@@ -7,6 +7,10 @@ use app\admin\model\File as FileModel;
 
 class FileController extends BaseController
 {
+    protected $middleware = [
+        'api_auth'
+    ];
+
     public function upload($key = 'file')
     {
         $uploadedFile = $this->request->file($key);

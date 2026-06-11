@@ -10,7 +10,7 @@ class Auth
     use Send;
 
     // jwt密钥
-    protected static $secret = 'kirin';
+    protected static $secret = '';
 
     // token时效
     protected static $expires = 60 * 60 * 24;
@@ -36,7 +36,7 @@ class Auth
     private static function certification($accessToken)
     {
         try {
-            return JWT::decode($accessToken, self::$secret);
+            return JWT::decode($accessToken, self::getSecret());
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -95,7 +95,12 @@ class Auth
             'info' => $info,
             'role' => $role
         ];
-        return JWT::encode($payload, self::$secret);
+        return JWT::encode($payload, self::getSecret());
+    }
+
+    private static function getSecret()
+    {
+        return env('jwt.secret', self::$secret);
     }
 
     /**

@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 
 use app\common\Auth;
+use app\common\Password;
 use app\admin\model\Manager;
 
 class AccessController extends BaseController
@@ -14,14 +15,9 @@ class AccessController extends BaseController
 
         $this->validate($post, 'Access.password');
 
-        $map = [
-            ['username', '=', $post['username']],
-            ['password', '=', md5($post['password'])]
-        ];
+        $manager = Manager::where('username', $post['username'])->find();
 
-        $manager = Manager::where($map)->find();
-
-        if (empty($manager)) {
+        if (empty($manager) || !Password::verify($post['password'], $manager->password)) {
             $this->error(401, '无权限登录或已禁用', 'LOGIN_FAIL');
         }
 
@@ -29,7 +25,12 @@ class AccessController extends BaseController
             $this->error(403, '该账号已被禁用', 'NOT_AUTH');
         }
 
-        $accessToken = Auth::setAccessToken($manager->id, $manager);
+        $managerInfo = [
+            'id' => $manager->id,
+            'nickname' => $manager->nickname
+        ];
+
+        $accessToken = Auth::setAccessToken($manager->id, $managerInfo);
         $this->app->event->trigger('ManagerLoginAfter', $manager);
 
         $this->success(201, $accessToken);
@@ -54,7 +55,12 @@ class AccessController extends BaseController
             $this->error(403, '该账号已被禁用', 'NOT_AUTH');
         }
 
-        $accessToken = Auth::setAccessToken($manager->id, $manager);
+        $managerInfo = [
+            'id' => $manager->id,
+            'nickname' => $manager->nickname
+        ];
+
+        $accessToken = Auth::setAccessToken($manager->id, $managerInfo);
         $this->app->event->trigger('ManagerLoginAfter', $manager);
 
         $this->success(201, $accessToken);

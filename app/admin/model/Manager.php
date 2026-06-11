@@ -4,6 +4,7 @@ namespace app\admin\model;
 
 use app\admin\model\File;
 use app\admin\model\ManagerRole;
+use app\common\Password;
 use think\model\concern\SoftDelete;
 
 class Manager extends BaseModel
@@ -17,7 +18,7 @@ class Manager extends BaseModel
 
     public function setPasswordAttr($value)
     {
-        return md5($value);
+        return Password::make($value);
     }
 
     public function roles()
@@ -34,8 +35,10 @@ class Manager extends BaseModel
     {
         $this->save($data);
 
-        if (!empty($data['role_keys'])) {
-            $this->roles()->saveAll($data['role_keys']);
+        $roleIds = $this->normalizeRoleIds($data['role_ids'] ?? []);
+
+        if (!empty($roleIds)) {
+            $this->roles()->saveAll($roleIds);
         }
     }
 
@@ -47,9 +50,10 @@ class Manager extends BaseModel
 
         $this->exists(true)->save($data);
 
+        $roleIds = $this->normalizeRoleIds($data['role_ids'] ?? []);
         $dbRoleIds = ManagerRole::where('manager_id', $this->getData('id'))->column('role_id');
-        $insertRoleIds = array_diff($data['role_ids'], $dbRoleIds);
-        $removeRoleIds = array_diff($dbRoleIds, $data['role_ids']);
+        $insertRoleIds = array_diff($roleIds, $dbRoleIds);
+        $removeRoleIds = array_diff($dbRoleIds, $roleIds);
 
         if (!empty($insertRoleIds)) {
             $this->roles()->saveAll($insertRoleIds);
@@ -67,5 +71,14 @@ class Manager extends BaseModel
         ManagerRole::destroy(function ($query) {
             $query->where('manager_id', $this->getData('id'));
         });
+    }
+
+    protected function normalizeRoleIds($roleIds)
+    {
+        if (!is_array($roleIds)) {
+            return [];
+        }
+
+        return array_values(array_unique(array_map('intval', array_filter($roleIds))));
     }
 }
