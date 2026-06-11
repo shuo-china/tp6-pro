@@ -4591,6 +4591,22 @@ CREATE TABLE `kr_manager_role` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for kr_role_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `kr_role_menu`;
+CREATE TABLE `kr_role_menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL COMMENT '角色id',
+  `menu_id` int(11) NOT NULL COMMENT '菜单id',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `role_menu` (`role_id`,`menu_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='角色菜单关系';
+
+-- ----------------------------
+-- Records of kr_role_menu
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for kr_role
 -- ----------------------------
 DROP TABLE IF EXISTS `kr_role`;
