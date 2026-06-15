@@ -23,7 +23,7 @@ class ApiPermission
 
         $manager = Manager::with([
             'roles' => function ($query) {
-                $query->getQuery()->where('status', 1);
+                $query->where('status', 1);
             }
         ])->where('id', $request->clientId)->find();
 

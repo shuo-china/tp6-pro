@@ -17,7 +17,7 @@ class ManagerController extends BaseController
     {
         $manager = Manager::with([
             'roles' => function ($query) {
-                $query->getQuery()->where('status', 1);
+                $query->where('status', 1);
             },
             'avatar'
         ])->hidden(['password'])->where('id', $this->request->clientId)->find();

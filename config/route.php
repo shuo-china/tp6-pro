@@ -26,6 +26,9 @@ return [
     'controller_suffix' => true,
     // 默认的路由变量规则
     'default_route_pattern' => '[\w\.]+',
+    'middleware' => [
+        \think\middleware\Throttle::class,
+    ],
     // 是否开启请求缓存 true自动缓存 支持设置请求缓存规则
     'request_cache_key' => false,
     // 请求缓存有效期

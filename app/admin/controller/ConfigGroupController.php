@@ -15,7 +15,6 @@ class ConfigGroupController extends BaseController
         ]
     ];
 
-    #[RateLimit(rate: "1/m")]
     public function initNoAuth()
     {
         $data = Config::get('sys');

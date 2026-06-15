@@ -1,14 +1,17 @@
 <?php
+
 namespace app\admin\controller;
 
 use app\common\Auth;
 use app\common\Password;
 use app\admin\model\Manager;
+use think\middleware\annotation\RateLimit;
 
 class AccessController extends BaseController
 {
     protected $middleware = [];
 
+    #[RateLimit(rate: "5/m")]
     public function createTokenByPassword()
     {
         $post = $this->request->post();

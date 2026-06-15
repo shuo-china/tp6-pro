@@ -27,7 +27,7 @@ class MenuController extends BaseController
     {
         $manager = Manager::with([
             'roles' => function ($query) {
-                $query->getQuery()->where('status', 1);
+                $query->where('status', 1);
             }
         ])->where('id', $this->request->clientId)->find();
 
