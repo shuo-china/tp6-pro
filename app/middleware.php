@@ -8,5 +8,6 @@ return [
     // Session初始化
     // \think\middleware\SessionInit::class
     // 	跨域请求支持
-    \think\middleware\AllowCrossDomain::class
+    \think\middleware\AllowCrossDomain::class,
+    \think\middleware\Throttle::class,
 ];

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04cb341b36744d5775c5bf7cbfec0f8c",
+    "content-hash": "39817d18e979c6b489ea693b9fc6f977",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -1482,6 +1482,54 @@
                 "source": "https://github.com/top-think/think-orm/tree/v2.0.62"
             },
             "time": "2024-09-22T06:17:47+00:00"
+        },
+        {
+            "name": "topthink/think-throttle",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/top-think/think-throttle.git",
+                "reference": "daa5bace5e4844a346af403a0c44d9ce4bf7af06"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/top-think/think-throttle/zipball/daa5bace5e4844a346af403a0c44d9ce4bf7af06",
+                "reference": "daa5bace5e4844a346af403a0c44d9ce4bf7af06",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0",
+                "topthink/framework": "^6.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "think": {
+                    "config": {
+                        "throttle": "src/config.php"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "think\\middleware\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "hongweipeng",
+                    "email": "hongweichen8888@sina.com"
+                }
+            ],
+            "description": "throttle middleware for thinkphp6",
+            "support": {
+                "issues": "https://github.com/top-think/think-throttle/issues",
+                "source": "https://github.com/top-think/think-throttle/tree/v1.3.1"
+            },
+            "time": "2022-08-25T14:35:52+00:00"
         },
         {
             "name": "wechatpay/wechatpay",

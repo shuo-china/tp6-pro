@@ -1,9 +1,11 @@
 <?php
+
 namespace app\admin\controller;
 
 use think\facade\Config;
 use app\admin\model\ConfigGroup;
 use app\admin\model\ConfigItem;
+use think\middleware\annotation\RateLimit;
 
 class ConfigGroupController extends BaseController
 {
@@ -13,6 +15,7 @@ class ConfigGroupController extends BaseController
         ]
     ];
 
+    #[RateLimit(rate: "1/m")]
     public function initNoAuth()
     {
         $data = Config::get('sys');

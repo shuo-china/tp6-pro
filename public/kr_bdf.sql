@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2026-06-11 16:40:40
+Date: 2026-06-11 16:58:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -273,9 +273,9 @@ CREATE TABLE `kr_manager` (
 -- ----------------------------
 -- Records of kr_manager
 -- ----------------------------
-INSERT INTO `kr_manager` VALUES ('100001', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '硕硕', '', '6982e201848d9', '1', 'oftII6d4qesedHYqQiVtmpyuNVf4', 'ozVaf5-Q8V60ggn4Pa6X9vVS2LeI', '1', '127.0.0.1', '1781166472', '1769506538', '1781166472', null);
-INSERT INTO `kr_manager` VALUES ('100002', 'test', 'e10adc3949ba59abbe56e057f20f883e', '测试', '', null, '1', null, null, '0', '127.0.0.1', '1781166465', '1781147494', '1781166465', null);
-INSERT INTO `kr_manager` VALUES ('100003', 'hhh', 'e10adc3949ba59abbe56e057f20f883e', '123', '', null, '1', null, null, '0', null, null, '1781147567', '1781147724', '1781147724');
+INSERT INTO `kr_manager` VALUES ('100001', 'admin', 'b7b53db84d1e6262d79305af1a572ab1cc6bf47f9e94a26401dda3f70a80556f', '硕硕', '', '6982e201848d9', '1', 'oftII6d4qesedHYqQiVtmpyuNVf4', 'ozVaf5-Q8V60ggn4Pa6X9vVS2LeI', '1', '127.0.0.1', '1781167719', '1769506538', '1781167719', null);
+INSERT INTO `kr_manager` VALUES ('100002', 'test', 'b7b53db84d1e6262d79305af1a572ab1cc6bf47f9e94a26401dda3f70a80556f', '测试', '', null, '1', null, null, '0', '127.0.0.1', '1781166465', '1781147494', '1781166465', null);
+INSERT INTO `kr_manager` VALUES ('100003', 'hhh', 'b7b53db84d1e6262d79305af1a572ab1cc6bf47f9e94a26401dda3f70a80556f', '123', '', null, '1', null, null, '0', null, null, '1781147567', '1781147724', '1781147724');
 INSERT INTO `kr_manager` VALUES ('100004', '123213', '202cb962ac59075b964b07152d234b70', '123123', '', null, '1', null, null, '0', null, null, '1781147576', '1781147722', '1781147722');
 INSERT INTO `kr_manager` VALUES ('100005', '123213', '4297f44b13955235245b2497399d7a93', '123213', '', null, '1', null, null, '0', null, null, '1781147717', '1781147721', '1781147721');
 
@@ -422,4 +422,4 @@ CREATE TABLE `kr_user_wechat_mini` (
 -- ----------------------------
 -- Records of kr_user_wechat_mini
 -- ----------------------------
-INSERT INTO `kr_user_wechat_mini` VALUES ('100002', '100002', '', 'oTXlW7ACdNN8DEnfG5Ckogofkv2s', '127.0.0.1', '1772183514', '1770435849', '1772183514', null);
+INSERT INTO `kr_user_wechat_mini` VALUES ('100002', null, '', 'oTXlW7ACdNN8DEnfG5Ckogofkv2s', '127.0.0.1', '1772183514', '1770435849', '1772183514', null);
