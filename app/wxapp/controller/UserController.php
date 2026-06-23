@@ -4,22 +4,25 @@ namespace app\wxapp\controller;
 
 use app\wxapp\model\User;
 use app\wxapp\model\UserWechatMini;
+use app\middleware\annotation\WxappPermission;
 
 class UserController extends BaseController
 {
     protected $middleware = [
-        'wxapp_api_auth:guest' => [
+        'wxapp_auth:guest' => [
             'only' => [
                 'bindMobile'
             ],
         ],
-        'wxapp_api_auth:bound' => [
+        'wxapp_auth:bound' => [
             'except' => [
                 'bindMobile'
             ],
         ],
+        'wxapp_permission',
     ];
 
+    #[WxappPermission(['teacher'])]
     public function currentUser()
     {
         $user = User::where('id', $this->request->clientId)->find();

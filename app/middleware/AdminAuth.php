@@ -7,7 +7,7 @@ namespace app\middleware;
 use app\common\Send;
 use app\common\Auth;
 
-class ApiAuth
+class AdminAuth
 {
     use Send;
 

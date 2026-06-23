@@ -34,7 +34,8 @@ class AccessController extends BaseController
             }
 
             $userInfo = [
-                'id' => $user->id
+                'id' => $user->id,
+                'roles' => ['teacher', 'student'],
             ];
             $accessToken = Auth::setAccessToken($user->id, [
                 'level' => 'bound',
@@ -58,7 +59,5 @@ class AccessController extends BaseController
                 'token_info' => $accessToken,
             ]);
         }
-
     }
-
 }

@@ -104,7 +104,7 @@ class Auth
     }
 
     /**
-     * 获取用户信息(使用场景：没有使用api_auth中间件，但想获得Token中的用户信息)
+     * 获取用户信息(使用场景：没有使用admin_auth中间件，但想获得Token中的用户信息)
      * @return null | array
      */
     final public static function getClient()

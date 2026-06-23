@@ -9,7 +9,7 @@ use app\admin\model\MenuApi;
 use app\admin\model\RoleMenu;
 use app\common\Send;
 
-class ApiPermission
+class AdminPermission
 {
     use Send;
 

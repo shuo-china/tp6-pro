@@ -7,8 +7,8 @@ use app\admin\model\Manager;
 class ManagerController extends BaseController
 {
     protected $middleware = [
-        'api_auth',
-        'api_permission' => [
+        'admin_auth',
+        'admin_permission' => [
             'except' => ['currentManager']
         ]
     ];

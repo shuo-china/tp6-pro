@@ -9,7 +9,7 @@ class BaseController extends CommonBaseController
 {
     use AdminSend;
 
-    protected $middleware = ['api_auth', 'api_permission'];
+    protected $middleware = ['admin_auth', 'admin_permission'];
 
     protected function initialize()
     {

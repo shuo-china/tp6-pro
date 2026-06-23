@@ -11,8 +11,8 @@ use think\facade\Db;
 class MenuController extends BaseController
 {
     protected $middleware = [
-        'api_auth',
-        'api_permission' => [
+        'admin_auth',
+        'admin_permission' => [
             'except' => ['currentMenus']
         ]
     ];

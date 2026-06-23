@@ -5,12 +5,11 @@ namespace app\admin\controller;
 use think\facade\Config;
 use app\admin\model\ConfigGroup;
 use app\admin\model\ConfigItem;
-use think\middleware\annotation\RateLimit;
 
 class ConfigGroupController extends BaseController
 {
     protected $middleware = [
-        'api_auth' => [
+        'admin_auth' => [
             'except' => ['initNoAuth']
         ]
     ];

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\middleware;
 
-class WxappApiAuth extends ApiAuth
+class WxappAuth extends AdminAuth
 {
     protected $levels = [
         'guest' => 1,

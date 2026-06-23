@@ -9,7 +9,6 @@ class FileController extends BaseController
 {
     public function upload($key = 'file')
     {
-        sleep(2);
         $uploadedFile = $this->request->file($key);
         if (!$uploadedFile) {
             $this->error(400, '未找到上传文件');
