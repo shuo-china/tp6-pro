@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP Version 5
  * @package thirdconnect
@@ -145,7 +146,7 @@ abstract class gatewayBase
     /**
      * 获取token信息
      * @method getToken
-     * @return void
+     * @return array
      */
     public function getToken()
     {
