@@ -54,7 +54,9 @@ class ExceptionController extends BaseController
 
     public function clear()
     {
-        ExceptionLog::where('id', '>', 0)->delete();
+        ExceptionLog::destroy(function ($query) {
+            $query->where('id', '>', 0);
+        });
 
         $this->success(204);
     }

@@ -127,8 +127,12 @@ class MenuController extends BaseController
 
         $ids = $this->getDescendantIds($id);
         Db::transaction(function () use ($ids) {
-            MenuApi::whereIn('menu_id', $ids)->delete();
-            Menu::whereIn('id', $ids)->delete();
+            MenuApi::destroy(function ($query) use ($ids) {
+                $query->whereIn('menu_id', $ids);
+            });
+            Menu::destroy(function ($query) use ($ids) {
+                $query->whereIn('id', $ids);
+            });
         });
         $this->success(204);
     }
@@ -189,7 +193,9 @@ class MenuController extends BaseController
 
     private function syncApiKeys(int $menuId, array $apiKeys): void
     {
-        MenuApi::where('menu_id', $menuId)->delete();
+        MenuApi::destroy(function ($query) use ($menuId) {
+            $query->where('menu_id', $menuId);
+        });
 
         if (!$apiKeys) {
             return;

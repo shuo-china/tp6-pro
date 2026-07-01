@@ -1,4 +1,5 @@
 <?php
+
 namespace app\admin\controller;
 
 use app\admin\model\DictType;
@@ -69,7 +70,9 @@ class DictTypeController extends BaseController
         $id = $this->request->param('id');
         $dictType = DictType::find($id);
 
-        DictItem::where('type_id', $id)->delete();
+        DictItem::destroy(function ($query) use ($id) {
+            $query->where('type_id', $id);
+        });
         $dictType->delete();
 
         cache('sys_dict', null);

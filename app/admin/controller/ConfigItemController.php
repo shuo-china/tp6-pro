@@ -1,4 +1,5 @@
 <?php
+
 namespace app\admin\controller;
 
 use app\admin\model\ConfigItem;
@@ -71,7 +72,9 @@ class ConfigItemController extends BaseController
     public function delete()
     {
         $id = $this->request->param('id');
-        ConfigItem::where('id', $id)->delete();
+        ConfigItem::destroy(function ($query) use ($id) {
+            $query->where('id', $id);
+        });
         cache('sys_config', null);
         $this->success(204);
     }

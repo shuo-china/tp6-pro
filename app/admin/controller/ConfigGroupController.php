@@ -88,7 +88,9 @@ class ConfigGroupController extends BaseController
     {
         $id = $this->request->param('id');
         $configGroup = ConfigGroup::find($id);
-        ConfigItem::where('group_id', $id)->delete();
+        ConfigItem::destroy(function ($query) use ($id) {
+            $query->where('group_id', $id);
+        });
         $configGroup->delete();
         cache('sys_config', null);
         $this->success(204);
