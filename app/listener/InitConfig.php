@@ -9,6 +9,8 @@ use app\admin\model\ConfigItem;
 
 class InitConfig
 {
+    protected const CACHE_KEY = 'sys_config';
+
     /**
      * 按照分组读取系统配置
      * @return array
@@ -38,13 +40,18 @@ class InitConfig
      */
     public function handle()
     {
-        $configs = cache('sys_config');
+        $configs = cache(self::CACHE_KEY);
 
-        if (!$configs) {
+        if ($configs === null) {
             $configs = $this->getConfigs();
-            cache('sys_config', $configs);
+            cache(self::CACHE_KEY, $configs);
         }
 
         Config::set($configs, 'sys');
+    }
+
+    public static function clear(): void
+    {
+        cache(self::CACHE_KEY, null);
     }
 }

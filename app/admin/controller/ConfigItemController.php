@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use app\listener\InitConfig;
 use app\admin\model\ConfigItem;
 
 class ConfigItemController extends BaseController
@@ -41,7 +42,7 @@ class ConfigItemController extends BaseController
         $this->validate($post, 'ConfigItem');
 
         ConfigItem::create($post);
-        cache('sys_config', null);
+        InitConfig::clear();
         $this->success(201);
     }
 
@@ -54,7 +55,7 @@ class ConfigItemController extends BaseController
         $this->validate($post, 'ConfigItem');
 
         ConfigItem::update($post);
-        cache('sys_config', null);
+        InitConfig::clear();
         $this->success(201);
     }
 
@@ -65,7 +66,7 @@ class ConfigItemController extends BaseController
     {
         $post = $this->request->post();
         ConfigItem::update($post);
-        cache('sys_config', null);
+        InitConfig::clear();
         $this->success(201);
     }
 
@@ -75,7 +76,7 @@ class ConfigItemController extends BaseController
         ConfigItem::destroy(function ($query) use ($id) {
             $query->where('id', $id);
         });
-        cache('sys_config', null);
+        InitConfig::clear();
         $this->success(204);
     }
 

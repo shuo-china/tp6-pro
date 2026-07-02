@@ -7,8 +7,7 @@ return [
     'listen' => [
         'AppInit' => [],
         'HttpRun' => [
-            \app\listener\InitConfig::class,
-            \app\listener\InitDict::class
+            \app\listener\InitConfig::class
         ],
         'HttpEnd' => [],
         'LogLevel' => [],

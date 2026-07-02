@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use think\facade\Config;
+use app\listener\InitConfig;
 use app\admin\model\ConfigGroup;
 use app\admin\model\ConfigItem;
 
@@ -71,7 +72,7 @@ class ConfigGroupController extends BaseController
         $post = $this->request->post();
         $this->validate($post, 'ConfigGroup');
         ConfigGroup::create($post);
-        cache('sys_config', null);
+        InitConfig::clear();
         $this->success(201);
     }
 
@@ -80,7 +81,7 @@ class ConfigGroupController extends BaseController
         $post = $this->request->post();
         $this->validate($post, 'ConfigGroup');
         ConfigGroup::update($post);
-        cache('sys_config', null);
+        InitConfig::clear();
         $this->success(201);
     }
 
@@ -92,7 +93,7 @@ class ConfigGroupController extends BaseController
             $query->where('group_id', $id);
         });
         $configGroup->delete();
-        cache('sys_config', null);
+        InitConfig::clear();
         $this->success(204);
     }
 }

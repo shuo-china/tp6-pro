@@ -2,7 +2,7 @@
 
 namespace app\admin\controller;
 
-use app\admin\model\DictType;
+use app\common\Dict;
 use app\admin\model\DictItem;
 
 class DictItemController extends BaseController
@@ -27,8 +27,7 @@ class DictItemController extends BaseController
         $this->validate($post, 'DictItem');
 
         DictItem::create($post);
-        cache('sys_dict', null);
-        cache('dict_options', null);
+        Dict::clear();
         $this->success(201);
     }
 
@@ -38,8 +37,7 @@ class DictItemController extends BaseController
         $this->validate($post, 'DictItem');
 
         DictItem::update($post);
-        cache('sys_dict', null);
-        cache('dict_options', null);
+        Dict::clear();
         $this->success(201);
     }
 
@@ -49,8 +47,7 @@ class DictItemController extends BaseController
         DictItem::destroy(function ($query) use ($id) {
             $query->where('id', $id);
         });
-        cache('sys_dict', null);
-        cache('dict_options', null);
+        Dict::clear();
         $this->success(204);
     }
 }

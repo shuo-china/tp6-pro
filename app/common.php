@@ -107,7 +107,32 @@ if (!function_exists('unparse_attr')) {
     }
 }
 
-// 应用公共文件
+if (!function_exists('dict_label')) {
+    /**
+     * 获取字典文本
+     * @param string $key 字典类型Key
+     * @param mixed $value 字典值
+     * @param mixed $default 默认值
+     * @return mixed
+     */
+    function dict_label(string $key, $value, $default = '')
+    {
+        return \app\common\Dict::label($key, $value, $default);
+    }
+}
+
+if (!function_exists('dict_options')) {
+    /**
+     * 获取字典选项
+     * @param string|array|null $keys 字典类型Key
+     * @return array
+     */
+    function dict_options($keys = null): array
+    {
+        return \app\common\Dict::options($keys);
+    }
+}
+
 if (!function_exists('file_size_format')) {
     /**
      * 文件大小格式化
