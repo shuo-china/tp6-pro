@@ -88,6 +88,7 @@ class Dict
             $options[$key][] = [
                 'label' => $item['name'],
                 'value' => $item['value'],
+                'color' => $item['color']
             ];
         }
 
